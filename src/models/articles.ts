@@ -1,17 +1,18 @@
 import {apiMethod, ApiRequest, axiosRequest, ServerConfig} from "@/models/index";
+import Cookies from "js-cookie";
 
 export interface Article {
-    id: number
-    user_id: number
+    id?: number
+    user_id?: number
     category_id: number
     title: string
     content: string
-    created_at: string
+    created_at?: string
     updated_at?: string
-    created_by: number
+    created_by?: number
     updated_by?: number
-    user_name: string
-    category_name: string
+    user_name?: string
+    category_name?: string
 }
 
 export default class ArticlesModel {
@@ -40,6 +41,24 @@ export default class ArticlesModel {
             const apiRequest: ApiRequest = {
                 method: apiMethod.GET
                 , url:`${this.url}/${articleId}`
+            }
+
+            const {data} = await axiosRequest(apiRequest, ServerConfig);
+            return data;
+        } catch (err: any) {
+            throw err.response.data;
+        }
+    }
+
+    public PostArticle = async (article: Article, token: string | null): Promise<any> => {
+        try {
+            const apiRequest: ApiRequest = {
+                method: apiMethod.POST
+                , url:`${this.url}/create`
+                , data: article
+                , headers: {
+                    Authorization:token,
+                }
             }
 
             const {data} = await axiosRequest(apiRequest, ServerConfig);

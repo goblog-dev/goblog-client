@@ -1,7 +1,6 @@
 'use client'
 
-import {Menu} from '@/components/menu';
-import {Main} from '@/components/main';
+import {Article} from '@/components/article';
 import {Spin} from "@/components/spin";
 import {useState} from "react";
 import {CommonContext} from "@/app/commonContext";
@@ -14,9 +13,8 @@ export default function Home() {
             <div className={isGlobalLoading ? 'visible' : 'invisible'}>
                 <Spin />
             </div>
-            <main className="flex min-h-screen flex-col">
-                <Menu/>
-                <Main/>
+            <main>
+                <Article/>
             </main>
         </CommonContext.Provider>
     );

@@ -26,7 +26,7 @@ export const ArticleContent = (props: any) => {
     }, [currentArticle])
 
     return (
-        <div className="p-3">
+        <div className="p-3 w-11/12">
             <div className="border-b-gray-500 border-b-2 pb-5 mb-5">
                 <div className="font-extrabold text-4xl pb-2">{currentArticleMemo.title}</div>
                 <span className="text-sm text-gray-500">
@@ -34,7 +34,10 @@ export const ArticleContent = (props: any) => {
                     ${DateFormat(currentArticleMemo.created_at)} ${TimeFormat(currentArticleMemo.created_at)}`}
                 </span>
             </div>
-            <div>{currentArticleMemo.content}</div>
+            <div
+                className="ql-editor border-b-2 border-gray-800 pb-5"
+                dangerouslySetInnerHTML={{__html: currentArticleMemo.content}}
+            ></div>
         </div>
     )
 }

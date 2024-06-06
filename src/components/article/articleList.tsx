@@ -44,8 +44,10 @@ export const ArticleList = (props: any) => {
                 {
                     articleListMemo.map((item: Article) => {
                         return (
-                            <li key={item.id} className="p-3">
-                                <button onClick={() => props.setCurrentArticle(item)}>{item.title}</button>
+                            <li key={item.id} className="p-3 text-left hover:bg-gray-500 hover:text-white">
+                                <button className="text-left" onClick={() => props.setCurrentArticle(item)}>
+                                    {item.title}
+                                </button>
                             </li>
                         )
                     })

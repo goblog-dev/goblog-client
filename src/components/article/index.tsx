@@ -1,7 +1,7 @@
 'use client'
 
-import {ArticleList} from "@/components/main/article/articleList";
-import {ArticleContent} from "@/components/main/article/articleContent";
+import {ArticleList} from "@/components/article/articleList";
+import {ArticleContent} from "@/components/article/articleContent";
 import useSWR from 'swr';
 import {ErrorAlert} from "@/components/alert";
 import {Spin} from "@/components/spin";
@@ -11,7 +11,7 @@ import {Article as articleInterface} from "@/models/articles";
 const fetcher: any = (url: string) => fetch(url).then((res) => res.json());
 
 export const Article = () => {
-    let { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_APP_CLIENT_HOST}/api/v1/articles`, fetcher);
+    const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_APP_CLIENT_HOST}/api/v1/articles`, fetcher);
     const [currentArticle, setCurrentArticle] = useState<articleInterface>({
         category_id: 0,
         category_name: "",
@@ -34,13 +34,13 @@ export const Article = () => {
     if (isLoading) return (<Spin />)
 
     return (
-        <>
-            <div className="p-1 min-w-fit">
+        <div className="flex flex-row mt-20 translate-y-2 w-9/12">
+            <div className="relative left-0 w-3/12 min-w-80">
                 <ArticleList data={data.data} setCurrentArticle={setCurrentArticle} />
             </div>
-            <div className="p-1 min-w-fit">
+            <div className="p-3 min-w-fit">
                 <ArticleContent data={currentArticleMemo}/>
             </div>
-        </>
+        </div>
     )
 }

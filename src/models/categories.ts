@@ -1,5 +1,14 @@
 import {apiMethod, ApiRequest, axiosRequest, ServerConfig} from "@/models/index";
 
+export interface Category {
+    id: number
+    name: string
+    created_at: string
+    updated_at?: string
+    created_by: number
+    updated_by?: number
+}
+
 export default class CategoriesModel {
     private readonly url: string;
 

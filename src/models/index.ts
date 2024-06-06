@@ -21,14 +21,12 @@ export interface ApiRequest {
     method: string;
     url: string;
     data?: any;
+    headers?: object
 }
 
 export const ServerConfig: AxiosConfig = {
     baseURL: process.env.NEXT_PUBLIC_APP_SERVER_HOST,
     timeout: TIMEOUT,
-    headers: {
-        Authorization: `Bearer ${Cookies.get("token")}`,
-    }
 }
 
 export const axiosRequest = async (apiRequest: ApiRequest, config: AxiosConfig) => {
@@ -38,6 +36,7 @@ export const axiosRequest = async (apiRequest: ApiRequest, config: AxiosConfig) 
             method: apiRequest.method
             , url: apiRequest.url
             , data: apiRequest.data
+            , headers: apiRequest.headers
         })
     } catch (error) {
         throw error;
