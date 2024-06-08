@@ -1,7 +1,14 @@
-import {ArticleEditor} from "@/components/article/articleEditor";
+'use client'
+
+import {ArticleEditor} from "@/pages/article/articleEditor";
+import {isAuth} from "@/pages/auth/isAuth";
 
 const ArticlePage = () => {
-    return (<ArticleEditor />)
+    return (
+        <>
+            <ArticleEditor/>
+        </>
+    )
 }
 
-export default ArticlePage;
+export default isAuth(ArticlePage);

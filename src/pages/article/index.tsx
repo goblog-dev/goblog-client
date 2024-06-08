@@ -1,7 +1,7 @@
 'use client'
 
-import {ArticleList} from "@/components/article/articleList";
-import {ArticleContent} from "@/components/article/articleContent";
+import {ArticleList} from "@/pages/article/articleList";
+import {ArticleContent} from "@/pages/article/articleContent";
 import useSWR from 'swr';
 import {ErrorAlert} from "@/components/alert";
 import {Spin} from "@/components/spin";
@@ -34,11 +34,11 @@ export const Article = () => {
     if (isLoading) return (<Spin />)
 
     return (
-        <div className="flex flex-row mt-20 translate-y-2 w-9/12">
-            <div className="relative left-0 w-3/12 min-w-80">
+        <div className="flex flex-row translate-y-2 w-10/12">
+            <div className="left-0 w-3/12 min-w-80">
                 <ArticleList data={data.data} setCurrentArticle={setCurrentArticle} />
             </div>
-            <div className="p-3 min-w-fit">
+            <div className="p-3 w-full">
                 <ArticleContent data={currentArticleMemo}/>
             </div>
         </div>

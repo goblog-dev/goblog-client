@@ -1,5 +1,4 @@
 import {apiMethod, ApiRequest, axiosRequest, ServerConfig} from "@/models/index";
-import Cookies from "js-cookie";
 
 export interface Article {
     id?: number

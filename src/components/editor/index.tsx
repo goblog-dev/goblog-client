@@ -81,7 +81,7 @@ export const formats = [
 
 // Quill Toolbar component
 export const QuillToolbar = (props: any) => (
-    <div id="toolbar" className="bg-gray-200 fixed top-20 translate-y-2 w-full left-0 z-20">
+    <div id="toolbar" className="bg-gray-200 sticky top-16 w-full left-0 z-20">
         <span className="ql-formats">
             <button onClick={() => {
                 props.handleEditorSaveCallback(props.data)

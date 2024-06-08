@@ -1,6 +1,7 @@
 import {useEffect, useMemo, useState} from "react";
 import {Article as articleInterface} from "@/models/articles";
 import {DateFormat, TimeFormat} from "@/app/tools";
+import {Auth} from "../auth";
 
 export const ArticleContent = (props: any) => {
     const [currentArticle, setCurrentArticle] = useState<articleInterface>({
@@ -26,8 +27,8 @@ export const ArticleContent = (props: any) => {
     }, [currentArticle])
 
     return (
-        <div className="p-3 w-11/12">
-            <div className="border-b-gray-500 border-b-2 pb-5 mb-5">
+        <div className="p-3">
+            <div className="border-b-gray-300 border-b-2 pb-5 mb-5">
                 <div className="font-extrabold text-4xl pb-2">{currentArticleMemo.title}</div>
                 <span className="text-sm text-gray-500">
                     {`${currentArticleMemo.user_name} - 
@@ -35,7 +36,7 @@ export const ArticleContent = (props: any) => {
                 </span>
             </div>
             <div
-                className="ql-editor border-b-2 border-gray-800 pb-5"
+                className="ql-editor border-b-2 border-gray-300 pb-5 text-gray-700 text-sm"
                 dangerouslySetInnerHTML={{__html: currentArticleMemo.content}}
             ></div>
         </div>

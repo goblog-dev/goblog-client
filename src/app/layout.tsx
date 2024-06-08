@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./layout.css";
-import {Menu} from "@/components/menu";
+import App from './app';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,11 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-      <Menu/>
-      {children}
-      </body>
-    </html>
+      // eslint-disable-next-line react/no-children-prop
+    <App children={children} inter={inter} />
   );
 }

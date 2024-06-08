@@ -2,11 +2,11 @@
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {JSX, useCallback, useMemo, useState} from "react";
+import {useCallback, useContext, useMemo, useState} from "react";
 import QuillToolbar, {formats, modules} from "@/components/editor";
-import {Category} from "@/components/category";
-import {ErrorAlert, SuccessAlert} from "@/components/alert";
+import {Category} from "../category";
 import Cookies from "js-cookie";
+import {CommonContext} from "@/app/commonContext";
 
 type contentData = {
     content: string;
@@ -18,7 +18,10 @@ export const ArticleEditor = () => {
     const [content, setContent] = useState<string>('');
     const [title, setTitle] = useState<string>('');
     const [categoryId, setCategoryId] = useState<number>(0);
-    const [alertStatus, setAlertStatus] = useState<JSX.Element>();
+    const {setAlertVisible
+        , setAlertMessage
+        , setAlertTitle
+        , setAlertSeverity} = useContext(CommonContext);
 
     const saveArticle = async (url: string, data: contentData): Promise<any> => {
         try {
@@ -28,33 +31,45 @@ export const ArticleEditor = () => {
                     headers: {
                         "content-type": "application/json",
                         accept: "application/json",
-                        Authorization: `Bearer ${Cookies.get("token")}`,
                     },
                     body: JSON.stringify(data)
                 })
 
             const response = await res.json();
             if (response.status === 'error') {
-                setAlertStatus(<ErrorAlert title={'Article'} message={response.translate}/>);
+                setAlertTitle("Save Article Error")
+                setAlertMessage(response.translate);
+                setAlertVisible(true);
+                setAlertSeverity("error");
                 return
             }
 
-            setAlertStatus(<SuccessAlert title={'Article'} message={response.translate}/>);
+            setAlertTitle("Save Article Success")
+            setAlertMessage(response.translate);
+            setAlertVisible(true);
+            setAlertSeverity("success");
         } catch (err: any) {
             console.error("err:", err);
-            setAlertStatus(<ErrorAlert title={'Article'} message={err.message}/>);
+            setAlertTitle("Save Article Error")
+            setAlertMessage(err.message);
+            setAlertVisible(true);
+            setAlertSeverity("error");
         }
     };
 
     const handleEditorSave = (data: contentData) => {
+        setAlertTitle("Save Article Error")
+        setAlertVisible(true);
+        setAlertSeverity("error");
+
         if (data.content.length <= 0) {
-            setAlertStatus(<ErrorAlert title={'Article'} message="required.content"/>);
+            setAlertMessage("required.content");
             return
         } else if (data.title.length <= 0) {
-            setAlertStatus(<ErrorAlert title={'Article'} message="required.title"/>);
+            setAlertMessage("required.title");
             return;
         } else if (data.category_id <= 0) {
-            setAlertStatus(<ErrorAlert title={'Article'} message="required.category"/>);
+            setAlertMessage("required.category");
             return;
         }
 
@@ -79,7 +94,7 @@ export const ArticleEditor = () => {
 
 
     const setupTitle = (title: string) => {
-        setAlertStatus(<></>);
+        setAlertVisible(false);
         setTitle(title);
     }
 
@@ -100,7 +115,7 @@ export const ArticleEditor = () => {
     </>
 
     const setupCategoryId = (categoryId: number) => {
-        setAlertStatus(<></>);
+        setAlertVisible(false);
         setCategoryId(categoryId);
     }
 
@@ -114,7 +129,7 @@ export const ArticleEditor = () => {
     </>
 
     const setupContent = (content: string) => {
-        setAlertStatus(<></>);
+        setAlertVisible(false);
         setContent(content);
     }
 
@@ -131,14 +146,13 @@ export const ArticleEditor = () => {
                 onChange={setupContent}
                 modules={modules}
                 formats={formats}
-                className="bg-white -z-0"
+                className="bg-white -z-0 min-h-96"
             />
         </div>
     </>
 
     return (
-        <div className="p-10 mt-20">
-            {alertStatus}
+        <div className="pl-48 pr-48">
             <div className="flex flex-row">
                 {titleEditor}
                 {categoryEditor}

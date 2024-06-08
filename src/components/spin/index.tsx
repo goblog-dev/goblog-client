@@ -1,7 +1,9 @@
-export const Spin = () => {
-    return (
-        <div className="fixed items-center block w-full h-lvh bg-white dark:bg-gray-800 z-50 opacity-50 top-0 left-0">
-            <div role="status" className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
+import {Backdrop} from "@/components/backdrop";
+
+export const Spin = (props: any) => {
+    const content = (props: any) => {
+        return (
+            <div className="flex flex-col space-y-3">
                 <svg aria-hidden="true"
                      className="w-16 h-16 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                      viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,6 +16,14 @@ export const Spin = () => {
                 </svg>
                 <span className="text-white">Loading...</span>
             </div>
-        </div>
+        )
+    }
+
+    return (
+        <>
+            {
+                props.open ? <Backdrop content={content(props)} /> : <></>
+            }
+        </>
     )
 }
