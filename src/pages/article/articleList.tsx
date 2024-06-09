@@ -9,7 +9,7 @@ export const ArticleList = (props: any) => {
     const [articleListMap, setArticleListMap] = useState<Map<string, Article[]>>();
 
     useEffect(() => {
-        if (props.data.length > 0) {
+        if (props.data) {
             setupArticleList(props.data);
             props.setCurrentArticle(props.data[0]);
         }

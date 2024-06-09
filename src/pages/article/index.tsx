@@ -3,10 +3,10 @@
 import {ArticleList} from "@/pages/article/articleList";
 import {ArticleContent} from "@/pages/article/articleContent";
 import useSWR from 'swr';
-import {ErrorAlert} from "@/components/alert";
 import {Spin} from "@/components/spin";
 import {useMemo, useState} from "react";
 import {Article as articleInterface} from "@/models/articles";
+import {Alert} from "@/components/alert";
 
 const fetcher: any = (url: string) => fetch(url).then((res) => res.json());
 
@@ -30,7 +30,7 @@ export const Article = () => {
         return currentArticle;
     }, [currentArticle])
 
-    if (error) return (<ErrorAlert title={'Article'} message={data.translate} />);
+    if (error) return (<Alert type="error" title={'Article'} message={data.translate} />);
     if (isLoading) return (<Spin />)
 
     return (

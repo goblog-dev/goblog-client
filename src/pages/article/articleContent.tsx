@@ -1,7 +1,6 @@
-import {useEffect, useMemo, useState} from "react";
+import {useLayoutEffect, useMemo, useState} from "react";
 import {Article as articleInterface} from "@/models/articles";
 import {DateFormat, TimeFormat} from "@/app/tools";
-import {Auth} from "../auth";
 
 export const ArticleContent = (props: any) => {
     const [currentArticle, setCurrentArticle] = useState<articleInterface>({
@@ -18,8 +17,10 @@ export const ArticleContent = (props: any) => {
         user_name: ""
     });
 
-    useEffect(() => {
-        setCurrentArticle(props.data);
+    useLayoutEffect(() => {
+        if (props.data) {
+            setCurrentArticle(props.data);
+        }
     }, [props.data])
 
     const currentArticleMemo = useMemo(() => {

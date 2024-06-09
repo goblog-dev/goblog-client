@@ -1,7 +1,7 @@
 'use client'
 
 import {CommonContext} from "@/app/commonContext";
-import {useContext} from "react";
+import {useContext, useEffect, useLayoutEffect, useState} from "react";
 import {LoginPage} from "@/pages/auth/login";
 import {LogoutPage} from "@/pages/auth/logout";
 import Cookies from "js-cookie";
@@ -11,10 +11,17 @@ export const isAuthenticated = (): boolean => {
 }
 
 export const AuthPage = () => {
+    const [isClient, setIsClient] = useState(false)
+
+    useLayoutEffect(() => {
+        setIsClient(true)
+    }, [])
+
     const {
         setModalOpen
         , setModalContent
-        , setModalTitle, setModalFooter
+        , setModalTitle
+        , setModalFooter
         , setModalHeader
         , setAlertVisible
         , setAlertTitle
@@ -25,6 +32,7 @@ export const AuthPage = () => {
     return (
         <>
             {
+                isClient ?
                 isAuthenticated()
                     ? <LogoutPage setAlertVisible={setAlertVisible}
                                   setAlertSeverity={setAlertSeverity}
@@ -39,8 +47,8 @@ export const AuthPage = () => {
                                  setAlertSeverity={setAlertSeverity}
                                  setAlertTitle={setAlertTitle}
                                  setAlertMessage={setAlertMessage}/>
+                    : <></>
             }
-
         </>
     );
 }

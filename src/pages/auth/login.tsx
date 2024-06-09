@@ -93,7 +93,7 @@ export const LoginPage = (props:any) => {
                 </div>
                 <div>
                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                    <input type="password" name="password" id="password" placeholder="••••••••"
+                    <input type="password" name="password" id="password" placeholder="••••••••" autoComplete="current-password"
                            className="
                                 bg-gray-100
                                 border-b border-gray-300
