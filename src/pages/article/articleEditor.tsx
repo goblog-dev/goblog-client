@@ -5,7 +5,6 @@ import 'react-quill/dist/quill.snow.css';
 import {useCallback, useContext, useMemo, useState} from "react";
 import QuillToolbar, {formats, modules} from "@/components/editor";
 import {Category} from "../category";
-import Cookies from "js-cookie";
 import {CommonContext} from "@/app/commonContext";
 
 type contentData = {

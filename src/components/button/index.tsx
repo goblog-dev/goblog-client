@@ -1,16 +1,13 @@
-import {ButtonPrimary} from "@/components/button/primary";
-import {ButtonSecondary} from "@/components/button/secondary";
+import {ButtonComponent} from "@/components/button/component";
 import {ButtonLabel} from "@/components/button/label";
-import {ButtonSuccess} from "@/components/button/success";
-import {ButtonError} from "@/components/button/error";
 
 export const Button = (props: any) => {
     if (props.type === "primary") {
-        return <ButtonPrimary {...props} />;
+        return <ButtonComponent textColor="white" color="black" {...props} />;
     }
 
     if (props.type === "secondary") {
-        return <ButtonSecondary {...props}/>;
+        return <ButtonComponent textColor="white" color="gray-500" {...props} />;
     }
 
     if (props.type === "label") {
@@ -18,10 +15,10 @@ export const Button = (props: any) => {
     }
 
     if (props.type === "success") {
-        return <ButtonSuccess {...props} />;
+        return <ButtonComponent textColor="white" color="green-800" {...props} />;
     }
 
     if (props.type === "error") {
-        return <ButtonError {...props} />;
+        return <ButtonComponent textColor="white" color="red-800" {...props} />;
     }
 }

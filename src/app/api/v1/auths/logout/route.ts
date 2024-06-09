@@ -19,16 +19,18 @@ export const GET = async (request: Request) => {
         apiResponse.status = resp.status;
         apiResponse.message = resp.message
         apiResponse.translate = resp.translate;
+        apiResponse.http_code = resp.http_code;
         apiResponse.data = resp.data;
 
         cookies().delete("token");
-
         return Response.json(apiResponse);
     } catch (err: any) {
         apiResponse.status = err.status;
         apiResponse.message = err.message;
         apiResponse.translate =  err.translate;
+        apiResponse.http_code = err.http_code;
 
+        cookies().delete("token");
         return Response.json(apiResponse);
     }
 }

@@ -1,6 +1,6 @@
 import {useLayoutEffect, useMemo, useState} from "react";
 import {Article as articleInterface} from "@/models/articles";
-import {DateFormat, TimeFormat} from "@/app/tools";
+import {DateFormat, TimeFormat} from "@/tool/dateTime";
 
 export const ArticleContent = (props: any) => {
     const [currentArticle, setCurrentArticle] = useState<articleInterface>({
@@ -31,9 +31,9 @@ export const ArticleContent = (props: any) => {
         <div className="p-3">
             <div className="border-b-gray-300 border-b-2 pb-5 mb-5">
                 <div className="font-extrabold text-4xl pb-2">{currentArticleMemo.title}</div>
-                <span className="text-sm text-gray-500">
-                    {`${currentArticleMemo.user_name} - 
-                    ${DateFormat(currentArticleMemo.created_at)} ${TimeFormat(currentArticleMemo.created_at)}`}
+                <span className="text-sm text-gray-500 flex flex-row space-x-2">
+                    <span>{currentArticleMemo.user_name}</span>
+                    <span>{currentArticleMemo.created_at ? DateFormat(currentArticleMemo.created_at) : ""}</span>
                 </span>
             </div>
             <div

@@ -3,6 +3,7 @@ export interface ApiResponse {
     message: string
     translate: string
     data?: any
+    http_code?: number
 }
 
 export const ApiStatus = {

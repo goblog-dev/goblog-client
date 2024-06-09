@@ -4,8 +4,13 @@ export const ButtonLabel = (props: any) => {
                 className="
                     hover:text-gray-800
                     text-left
+                     flex flex-row
+                    space-x-1
+                    justify-between
                 ">
-            {props.label}
+            <span>{props.iconStart}</span>
+            <span>{props.label}</span>
+            <span>{props.iconEnd}</span>
         </button>
     )
 }
