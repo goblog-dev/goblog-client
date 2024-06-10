@@ -6,7 +6,7 @@ export const POST = async (request: Request) => {
     const apiResponse: ApiResponse = {message: "", status: "", translate: ""}
 
     try {
-        const {title, category_id, content} = await request.json();
+        const {title, category_id, content, tags} = await request.json();
         const cookieToken = cookies().get("token");
         let token: string = "Bearer "
 
@@ -16,7 +16,7 @@ export const POST = async (request: Request) => {
 
         const articleModel:ArticleModel = new ArticleModel();
         const resp: ApiResponse = await articleModel.PostArticle(
-            {title,  category_id: parseInt(category_id), content}, token
+            {title,  category_id: parseInt(category_id), content, tags}, token
         );
 
         apiResponse.status = resp.status;

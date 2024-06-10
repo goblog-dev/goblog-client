@@ -19,7 +19,7 @@ export const Dropdown = (props: any) => {
         <select
             id="options"
             onChange={(e) => props.setValue(e.target.value)}
-            className="border-gray-300 border-b-2 p-2 w-full">
+            className="border-gray-300 border-b-2 p-2 w-full bg-gray-100">
             <option key={0} value={0} selected={true}>-- select ---</option>
             {
                 listDropdown.map((item: DropdownStruct) => {

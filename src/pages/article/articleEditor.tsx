@@ -11,16 +11,20 @@ type contentData = {
     content: string;
     title: string;
     category_id: number;
+    tags?: string;
 }
 
 export const ArticleEditor = () => {
     const [content, setContent] = useState<string>('');
     const [title, setTitle] = useState<string>('');
+    const [tags, setTags] = useState<string>('');
     const [categoryId, setCategoryId] = useState<number>(0);
-    const {setAlertVisible
+    const {
+        setAlertVisible
         , setAlertMessage
         , setAlertTitle
-        , setAlertSeverity} = useContext(CommonContext);
+        , setAlertSeverity
+    } = useContext(CommonContext);
 
     const saveArticle = async (url: string, data: contentData): Promise<any> => {
         try {
@@ -87,6 +91,10 @@ export const ArticleEditor = () => {
         return categoryId;
     }, [categoryId])
 
+    const tagsMemo = useMemo(() => {
+        return tags;
+    }, [tags])
+
     const handleEditorSaveCallback = useCallback((data: contentData) => {
         return handleEditorSave(data);
     }, [content, title, categoryId])
@@ -98,12 +106,12 @@ export const ArticleEditor = () => {
     }
 
     const titleEditor = <>
-        <div className="pl-10 pr-10 m-5 w-full flex-col">
-            <div className="font-bold mb-3">Title:</div>
+        <div className="pl-10 pr-10 w-full flex-col">
+            {/*<div className="font-bold mb-3">Title:</div>*/}
             <div>
                 <input
                     type='text'
-                    className="border-gray-300 border-b-2 p-2 w-full"
+                    className="border-gray-300 bg-gray-100 border-b-2 p-2 w-full"
                     value={title}
                     onChange={(e) => setupTitle(e.target.value)}
                     maxLength={50}
@@ -119,10 +127,31 @@ export const ArticleEditor = () => {
     }
 
     const categoryEditor = <>
-        <div className="pl-10 pr-10 m-5 w-full">
-            <div className="font-bold mb-3">Category:</div>
+        <div className="pl-10 pr-10 w-full">
+            {/*<div className="font-bold mb-3">Category:</div>*/}
             <div>
                 <Category setCategoryId={setupCategoryId}/>
+            </div>
+        </div>
+    </>
+
+    const setupTags = (tags: string) => {
+        setAlertVisible(false);
+        setTags(tags);
+    }
+
+    const tagEditor = <>
+        <div className="pl-10 pr-10 w-full flex-col">
+            {/*<div className="font-bold mb-3">Title:</div>*/}
+            <div>
+                <input
+                    type='tags'
+                    className="border-gray-300 bg-gray-100 border-b-2 p-2 w-full"
+                    value={tags}
+                    onChange={(e) => setupTags(e.target.value)}
+                    maxLength={50}
+                    placeholder={'#tag1 #tag2 #tag3'}
+                />
             </div>
         </div>
     </>
@@ -133,11 +162,15 @@ export const ArticleEditor = () => {
     }
 
     const contentEditor = <>
-        <div className="pl-10 pr-10 m-5">
+        <div className="w-full">
             <QuillToolbar
-                handleEditorSaveCallback={() => handleEditorSaveCallback(
-                    {category_id: categoryId, content: content, title: title})}
-                data={{content: contentMemo, title: titleMemo, category_id: categoryIdMemo}}
+                handleEditorSaveCallback={handleEditorSaveCallback}
+                data={{
+                    content: contentMemo
+                    , title: titleMemo
+                    , category_id: categoryIdMemo
+                    , tags: tagsMemo
+                }}
             />
             <ReactQuill
                 theme="snow"
@@ -151,12 +184,19 @@ export const ArticleEditor = () => {
     </>
 
     return (
-        <div className="pl-48 pr-48">
-            <div className="flex flex-row">
-                {titleEditor}
-                {categoryEditor}
+        <div className="w-10/12 flex flex-col pl-16 pr-16 pt-5 min-w-80 space-y-5">
+            <div className="flex flex-col space-y-3">
+                <div className="flex flex-row mt-3">
+                    {titleEditor}
+                    {categoryEditor}
+                </div>
+                <div>
+                    {tagEditor}
+                </div>
             </div>
-            {contentEditor}
+            <div>
+                {contentEditor}
+            </div>
         </div>
     )
 }

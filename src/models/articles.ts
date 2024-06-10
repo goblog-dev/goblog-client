@@ -12,6 +12,7 @@ export interface Article {
     updated_by?: number
     user_name?: string
     category_name?: string
+    tags?: string
 }
 
 export default class ArticlesModel {

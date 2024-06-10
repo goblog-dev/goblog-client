@@ -5,10 +5,9 @@ import {useContext, useEffect, useLayoutEffect, useState} from "react";
 import {LoginPage} from "@/pages/auth/login";
 import {LogoutPage} from "@/pages/auth/logout";
 import Cookies from "js-cookie";
+import {isAuthenticated} from "@/pages/auth/isAuth";
 
-export const isAuthenticated = (): boolean => {
-    return Cookies.get("token") !== undefined;
-}
+
 
 export const AuthPage = () => {
     const [isClient, setIsClient] = useState(false)

@@ -25,6 +25,7 @@ export const LogoutPage = (props: any) => {
             props.setAlertVisible(true);
             props.setAlertSeverity("success");
 
+            window.localStorage.removeItem("token");
             router.push("/");
         } catch (err: any) {
             console.error("err:", err);
@@ -33,6 +34,8 @@ export const LogoutPage = (props: any) => {
             props.setAlertMessage(err.message);
             props.setAlertVisible(true);
             props.setAlertSeverity("error");
+
+            window.localStorage.removeItem("token");
         }
     }
 

@@ -16,7 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      // eslint-disable-next-line react/no-children-prop
-    <App children={children} inter={inter} />
-  );
+      <html lang="en">
+          <body className={inter.className}>
+          {/* eslint-disable-next-line react/no-children-prop */}
+          <App children={children}/>
+          </body>
+      </html>
+);
 }

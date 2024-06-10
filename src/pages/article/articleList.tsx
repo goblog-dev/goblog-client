@@ -28,6 +28,7 @@ export const ArticleList = (props: any) => {
             , updated_by: item.updated_by
             , user_name: item.user_name
             , category_name: item.category_name
+            , tags: item.tags
         }
     }
 

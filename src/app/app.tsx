@@ -34,9 +34,7 @@ const App = (props: any) => {
             , setAlertMessage
             , setAlertSeverity
         }}>
-            <html lang="en">
-                <body className={props.inter.className}>
-                    <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible} />
+            <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible} />
                     <Spin open={isGlobalLoading} />
                     <Modal open={modalOpen}
                            content={modalContent}
@@ -45,9 +43,6 @@ const App = (props: any) => {
                            header={modalHeader}/>
                     <Menu/>
                     {props.children}
-                </body>
-            </html>
-
         </CommonContext.Provider>
     );
 }
