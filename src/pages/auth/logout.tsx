@@ -8,7 +8,7 @@ export const LogoutPage = (props: any) => {
 
     const logout = async () => {
         try {
-            const res: Response = await fetch(process.env.NEXT_PUBLIC_APP_CLIENT_HOST + "/api/v1/auths/logout");
+            const res: Response = await fetch("/api/v1/auths/logout");
             const response = await res.json();
 
             if (response.status === 'error') {
