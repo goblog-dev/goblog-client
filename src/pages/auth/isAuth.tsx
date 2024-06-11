@@ -1,37 +1,31 @@
 "use client";
-import {useEffect} from "react";
+
+import {useEffect, useState} from "react";
 import {redirect} from "next/navigation";
 import Cookies from "js-cookie";
-
-export const isRememberMe = () => {
-    const localStorageToken = window.localStorage.getItem("token");
-    if (localStorageToken !== null) {
-        Cookies.set("token", localStorageToken);
-    }
-}
+import {IsRememberMe} from "@/pages/auth/isRememberMe";
 
 export const isAuthenticated = (): boolean => {
-    isRememberMe();
+    IsRememberMe();
     return Cookies.get("token") !== undefined ||
         window.localStorage.getItem("token") !== null;
 }
 
 export const isAuth = (Component: any) => {
+
     // eslint-disable-next-line react/display-name
     return (props: any) => {
-        const auth: boolean = isAuthenticated();
+        const [isAuthenticatedStatus, setIsAuthenticatedStatus] = useState<boolean>(false);
 
         useEffect(() => {
-            if (!auth) {
+            if (!isAuthenticated()) {
+                setIsAuthenticatedStatus(false);
                 return redirect("/");
+            } else {
+                setIsAuthenticatedStatus(true);
             }
-        }, []);
+        }, [isAuthenticatedStatus]);
 
-
-        if (!auth) {
-            return null;
-        }
-
-        return <Component {...props} />;
+        return (isAuthenticatedStatus ? <Component {...props} /> : null);
     };
 }

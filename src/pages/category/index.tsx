@@ -15,6 +15,10 @@ export const Category = (props: any) => {
     if (error) return (<Alert type="error" title={'Article'} message={data ? data.translate : "cannot reach server"}/>);
     if (isLoading) return (<Spin/>)
 
+    if (data.data == undefined) {
+        return <Dropdown data={[]} />
+    }
+
     const dropdownData = data.data.map((item: categoryStruct, id: number): DropdownStruct => {
         return {key: id, label: item.name, value: item.id}
     })

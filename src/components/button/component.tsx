@@ -3,7 +3,7 @@ export const ButtonComponent = (props: any) => {
         <button onClick={props.onClick}
                 className={`
                     w-full
-                    bg-${props.color}
+                    ${props.color}
                     text-${props.textColor} text-sm
                     pt-1 pb-1 pl-3 pr-3
                     border-2 border-${props.color} rounded-md
