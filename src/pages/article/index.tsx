@@ -32,19 +32,20 @@ const Article = () => {
     }, [currentArticle])
 
     if (error) return (<Alert type="error" title={'Article'} message={data ? data.translate : "cannot reach server"}/>);
-    if (isLoading) return (setIsGlobalLoading(true));
-    if (data) setIsGlobalLoading(false);
-
-    return (
-        <div className="flex flex-row translate-y-2 w-10/12 space-x-20">
-            <div className="left-0 w-fit border-r border-gray-200">
-                <ArticleList data={data.data} setCurrentArticle={setCurrentArticle}/>
+    if (isLoading) return (<>{setIsGlobalLoading(true)}</>);
+    if (data) {
+        setIsGlobalLoading(false)
+        return <>
+            <div className="flex flex-row translate-y-2 w-10/12 space-x-20">
+                <div className="left-0 w-fit border-r border-gray-200">
+                    <ArticleList data={data.data} setCurrentArticle={setCurrentArticle}/>
+                </div>
+                <div className="p-3 w-full">
+                    <ArticleContent data={currentArticleMemo}/>
+                </div>
             </div>
-            <div className="p-3 w-full">
-                <ArticleContent data={currentArticleMemo}/>
-            </div>
-        </div>
-    )
+        </>
+    }
 }
 
 export default Article;

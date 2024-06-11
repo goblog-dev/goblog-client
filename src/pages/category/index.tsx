@@ -16,22 +16,24 @@ const Category = (props: any) => {
     const {setIsGlobalLoading} = useContext(CommonContext);
 
     if (error) return (<Alert type="error" title={'Article'} message={data ? data.translate : "cannot reach server"}/>);
-    if (isLoading) return (setIsGlobalLoading(true))
-    if (data) setIsGlobalLoading(false);
+    if (isLoading) return (<>setIsGlobalLoading(true)</>)
+    if (data) {
+        setIsGlobalLoading(false)
 
-    if (data.data == undefined) {
-        return <Dropdown data={[]} />
+        if (data.data == undefined) {
+            return <Dropdown data={[]} />
+        }
+
+        const dropdownData = data.data.map((item: categoryStruct, id: number): DropdownStruct => {
+            return {key: id, label: item.name, value: item.id}
+        })
+
+        const setupCategoryId = (categoryId: number) => {
+            props.setCategoryId(categoryId);
+        }
+
+        return (<Dropdown data={dropdownData} setValue={setupCategoryId}/>)
     }
-
-    const dropdownData = data.data.map((item: categoryStruct, id: number): DropdownStruct => {
-        return {key: id, label: item.name, value: item.id}
-    })
-
-    const setupCategoryId = (categoryId: number) => {
-        props.setCategoryId(categoryId);
-    }
-
-    return (<Dropdown data={dropdownData} setValue={setupCategoryId}/>)
 }
 
 export default Category;
