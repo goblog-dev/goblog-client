@@ -51,21 +51,19 @@ const ArticleContent = (props: any) => {
                 {
                     tagsMemoList ?
                         tagsMemoList.map((tag: string, index: number) => {
-                            return <>
+                            return <div key={index}>
                                 {
                                     tag.length > 0 ?
-                                        <div key={index} className="
-                                                            rounded
-                                                            border border-gray-500
-                                                            p-1
-                                                            text-xs text-white
-                                                            font-light
-                                                            bg-gray-500">
-                                            {tag}
-                                        </div> : <></>
+                                    <div key={index+tag}
+                                         className="bg-gray-600
+                                                        text-white text-xs
+                                                        pt-1 pb-1 pr-2 pl-2
+                                                        rounded">{tag}</div>
+                                    : <div key={index+tag}></div>
                                 }
-                            </>
-                        }) : <></>
+                            </div>
+                        })
+                        :  <></>
                 }
             </div>
         </div>
@@ -73,3 +71,5 @@ const ArticleContent = (props: any) => {
 }
 
 export default ArticleContent;
+
+

@@ -1,5 +1,5 @@
 import {useRouter} from "next/navigation";
-import {useContext, useState} from "react";
+import {useState} from "react";
 import {Auth} from "@/models/auth";
 import {Button} from "@/components/button";
 import {Spin} from "@/components/spin";
@@ -106,8 +106,9 @@ const AuthLoginForm = (props: any) => {
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={login}>
                 <div>
-                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Your
-                        email</label>
+                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
+                        Your email
+                    </label>
                     <input type="email" name="email" id="email"
                            className="
                                 bg-gray-100
@@ -117,6 +118,7 @@ const AuthLoginForm = (props: any) => {
                                 focus:ring-primary-600 focus:border-primary-600
                                 block w-full
                                 p-2.5"
+                           autoComplete="username"
                            placeholder="name@company.com" required={true}/>
                 </div>
                 <div>

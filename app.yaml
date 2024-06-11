@@ -1,0 +1,12 @@
+runtime: nodejs20
+service: default
+instance_class: F1
+
+# Ensure all files are served
+handlers:
+  - url: /.*
+    script: auto
+
+# Optional: Add env variables of your choice
+env_variables:
+  NEXT_PUBLIC_APP_SERVER_HOST: 'https://goblog-dev.as.r.appspot.com/'
