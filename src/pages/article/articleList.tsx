@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import {Article} from "@/models/articles";
 import {Button} from "@/components/button";
 
-export const ArticleList = (props: any) => {
+const ArticleList = (props: any) => {
     const [categoryList, setCategoryList] = useState<string[]>([]);
     const [articleListMap, setArticleListMap] = useState<Map<string, Article[]>>();
 
@@ -86,8 +86,10 @@ export const ArticleList = (props: any) => {
     }
 
     return (
-        <div className="bg-gray-100 mr-10 p-5 sticky top-10 left-0">
+        <div className="bg-gray-100 mr-10 p-5 sticky top-10 left-0 min-w-56">
             {listArticle()}
         </div>
     )
 }
+
+export default ArticleList;

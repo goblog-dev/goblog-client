@@ -1,4 +1,4 @@
-export const ArticleEditorTags = (props: any) => {
+const ArticleEditorTags = (props: any) => {
     const setupTags = (tags: string) => {
         props.setAlertVisible(false);
         props.setTags(tags);
@@ -22,3 +22,5 @@ export const ArticleEditorTags = (props: any) => {
 
     return (<>{tagEditor}</>)
 }
+
+export default ArticleEditorTags;

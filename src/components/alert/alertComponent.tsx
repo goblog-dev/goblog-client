@@ -1,21 +1,14 @@
 'use client'
 
 import {Button} from "@/components/button";
-import {useContext, useLayoutEffect, useState, useCallback} from "react";
+import {useContext, useEffect, useState} from "react";
 import {CommonContext} from "@/app/commonContext";
 
 export const AlertComponent = (props: any) => {
     const [open, setOpen] = useState<boolean>(false);
     const {setAlertVisible} = useContext(CommonContext);
 
-    const setupAlert = useCallback((openStatus: boolean) => {
-        return () => {
-            setAlertVisible(openStatus);
-            setOpen(openStatus);
-        }
-    },[setAlertVisible])
-
-    useLayoutEffect(() => {
+    useEffect(() => {
         setOpen(props.open);
         const timeOut = setTimeout(() => {
             setupAlert(false);
@@ -24,7 +17,12 @@ export const AlertComponent = (props: any) => {
         return () => {
             clearTimeout(timeOut);
         }
-    }, [props, setupAlert])
+    }, [props])
+
+    const setupAlert = (openStatus: boolean) => {
+        setAlertVisible(openStatus);
+        setOpen(openStatus);
+    }
 
     const content = (props: any) => {
         return (

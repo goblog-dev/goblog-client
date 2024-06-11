@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {AuthPage} from "@/pages/auth";
+import AuthPage from "@/pages/auth";
 
 export const Menu = () => {
     return (
@@ -12,11 +12,11 @@ export const Menu = () => {
                 border-b-2 border-gray-200
                 text-black
                 pt-3 pb-3 pl-16 pr-16
-                w-full
+                w-ful
                 overflow-hidden
             ">
-            <div className="flex items-center justify-between">
-                <div className="pl-5 pr-5 border-r-2 border-gray-200 w-fit">
+            <div className="flex items-center justify-between space-x-2">
+                <div className="pl-5 pr-5 border-r-2 border-gray-200 w-full overflow-hidden">
                     <Link href="/">
                         <span className="text-4xl">GoBlog</span><span>.dev</span>
                     </Link>

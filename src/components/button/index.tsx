@@ -1,4 +1,4 @@
-import {ButtonComponent} from "@/components/button/component";
+import {ButtonComponent} from "@/components/button/buttonComponent";
 import {ButtonLabel} from "@/components/button/label";
 
 export const Button = (props: any) => {

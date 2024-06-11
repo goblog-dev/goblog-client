@@ -1,6 +1,6 @@
 'use client'
 
-import {Article} from '@/pages/article';
+import Article from '@/pages/article';
 
 export default function Home() {
     return (

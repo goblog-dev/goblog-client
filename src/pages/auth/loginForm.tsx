@@ -1,11 +1,13 @@
 import {useRouter} from "next/navigation";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {Auth} from "@/models/auth";
 import {Button} from "@/components/button";
+import {Spin} from "@/components/spin";
 
-export const AuthLoginForm = (props: any) => {
+const AuthLoginForm = (props: any) => {
     const router = useRouter();
     const [showPassword, setShowPassword] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const setupShowPassword = () => {
         setShowPassword(!showPassword);
@@ -13,6 +15,9 @@ export const AuthLoginForm = (props: any) => {
 
     const login = async (e: any) => {
         e.preventDefault();
+
+       setLoading(true);
+
         const {email, password, remember} = e.target;
         const url: string = "api/v1/auths/login";
 
@@ -40,6 +45,7 @@ export const AuthLoginForm = (props: any) => {
                 props.setAlertVisible(true);
                 props.setAlertSeverity("error");
 
+                props.setModalOpen(true);
                 return
             }
 
@@ -59,6 +65,8 @@ export const AuthLoginForm = (props: any) => {
             props.setAlertMessage(err.message);
             props.setAlertVisible(true);
             props.setAlertSeverity("error");
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -83,6 +91,7 @@ export const AuthLoginForm = (props: any) => {
 
 
     return <>
+        <Spin open={loading} />
         <div className="p-6
                     space-y-4
                     md:space-y-6
@@ -178,3 +187,5 @@ export const AuthLoginForm = (props: any) => {
         </div>
     </>
 }
+
+export default AuthLoginForm;

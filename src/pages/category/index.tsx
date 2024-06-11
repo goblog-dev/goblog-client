@@ -9,7 +9,7 @@ import {Alert} from "@/components/alert";
 
 const fetcher: any = (url: string) => fetch(url).then((res) => res.json());
 
-export const Category = (props: any) => {
+const Category = (props: any) => {
     const {data, error, isLoading} = useSWR(`/api/v1/categories`, fetcher);
 
     if (error) return (<Alert type="error" title={'Article'} message={data ? data.translate : "cannot reach server"}/>);
@@ -29,3 +29,5 @@ export const Category = (props: any) => {
 
     return (<Dropdown data={dropdownData} setValue={setupCategoryId}/>)
 }
+
+export default Category;

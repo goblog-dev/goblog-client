@@ -2,10 +2,10 @@
 
 import {useCallback, useContext, useMemo, useState} from "react";
 import {CommonContext} from "@/app/commonContext";
-import {ArticleEditorTitle} from "@/pages/article/articleEditorTitle";
-import {ArticleEditorCategory} from "@/pages/article/articleEditorCategory";
-import {ArticleEditorContent} from "@/pages/article/articleEditorContent";
-import {ArticleEditorTags} from "@/pages/article/articleEditorTags";
+import ArticleEditorTitle from "@/pages/article/articleEditorTitle";
+import ArticleEditorCategory from "@/pages/article/articleEditorCategory";
+import ArticleEditorContent from "@/pages/article/articleEditorContent";
+import ArticleEditorTags from "@/pages/article/articleEditorTags";
 
 type contentData = {
     content: string;
@@ -14,7 +14,7 @@ type contentData = {
     tags?: string;
 }
 
-export const ArticleEditor = () => {
+const ArticleEditor = () => {
     const [title, setTitle] = useState<string>('');
     const [content, setContent] = useState<string>('');
     const [tags, setTags] = useState<string>('');
@@ -24,10 +24,13 @@ export const ArticleEditor = () => {
         , setAlertMessage
         , setAlertTitle
         , setAlertSeverity
+        , setIsGlobalLoading
     } = useContext(CommonContext);
 
     const saveArticle = async (url: string, data: contentData): Promise<any> => {
         try {
+            setIsGlobalLoading(true);
+
             const res: Response = await fetch(
                 url, {
                     method: "POST",
@@ -57,6 +60,8 @@ export const ArticleEditor = () => {
             setAlertMessage(err.message);
             setAlertVisible(true);
             setAlertSeverity("error");
+        } finally {
+            setIsGlobalLoading(false);
         }
     };
 
@@ -129,3 +134,5 @@ export const ArticleEditor = () => {
         </div>
     )
 }
+
+export default ArticleEditor;

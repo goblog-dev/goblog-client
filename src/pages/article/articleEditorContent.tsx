@@ -1,6 +1,6 @@
 import {QuillEditor} from '@/components/editor/quillToolbar';
 
-export const ArticleEditorContent = (props: any) => {
+const ArticleEditorContent = (props: any) => {
     const setupContent = (content: string) => {
         props.setAlertVisible(false);
         props.setContent(content);
@@ -21,3 +21,5 @@ export const ArticleEditorContent = (props: any) => {
 
     return (<>{contentEditor}</>)
 }
+
+export default ArticleEditorContent;

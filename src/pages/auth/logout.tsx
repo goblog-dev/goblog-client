@@ -2,11 +2,16 @@
 
 import {Button} from "@/components/button";
 import {useRouter} from "next/navigation";
+import {useContext} from "react";
+import {CommonContext} from "@/app/commonContext";
 
-export const LogoutPage = (props: any) => {
+const LogoutPage = (props: any) => {
     const router = useRouter();
+    const {setIsGlobalLoading} = useContext(CommonContext);
 
     const logout = async () => {
+        setIsGlobalLoading(true);
+
         try {
             const res: Response = await fetch("/api/v1/auths/logout");
             const response = await res.json();
@@ -25,7 +30,6 @@ export const LogoutPage = (props: any) => {
             props.setAlertVisible(true);
             props.setAlertSeverity("success");
 
-            window.localStorage.removeItem("token");
             router.push("/");
         } catch (err: any) {
             console.error("err:", err);
@@ -34,10 +38,13 @@ export const LogoutPage = (props: any) => {
             props.setAlertMessage(err.message);
             props.setAlertVisible(true);
             props.setAlertSeverity("error");
-
+        } finally {
             window.localStorage.removeItem("token");
+            setIsGlobalLoading(false);
         }
     }
 
     return (<Button type="secondary" label="Logout" onClick={() => logout()}/>);
 }
+
+export default LogoutPage;

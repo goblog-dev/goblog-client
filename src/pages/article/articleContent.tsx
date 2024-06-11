@@ -2,7 +2,7 @@ import {useLayoutEffect, useMemo, useState} from "react";
 import {Article as articleInterface} from "@/models/articles";
 import {DateFormat} from "@/tool/dateTime";
 
-export const ArticleContent = (props: any) => {
+const ArticleContent = (props: any) => {
     const [currentArticle, setCurrentArticle] = useState<articleInterface>({
         category_id: 0
         , category_name: ""
@@ -71,3 +71,5 @@ export const ArticleContent = (props: any) => {
         </div>
     )
 }
+
+export default ArticleContent;

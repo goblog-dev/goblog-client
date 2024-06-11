@@ -1,4 +1,4 @@
-export const ArticleEditorTitle = (props: any) => {
+const ArticleEditorTitle = (props: any) => {
     const setupTitle = (title: string) => {
         props.setAlertVisible(false);
         props.setTitle(title);
@@ -22,3 +22,5 @@ export const ArticleEditorTitle = (props: any) => {
 
     return (<>{titleEditor}</>)
 }
+
+export default ArticleEditorTitle;

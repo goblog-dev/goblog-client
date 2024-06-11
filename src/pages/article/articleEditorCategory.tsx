@@ -1,6 +1,6 @@
-import {Category} from "@/pages/category";
+import Category from "@/pages/category";
 
-export const ArticleEditorCategory = (props: any) => {
+const ArticleEditorCategory = (props: any) => {
     const setupCategoryId = (categoryId: number) => {
         props.setAlertVisible(false);
         props.setCategoryId(categoryId);
@@ -17,3 +17,5 @@ export const ArticleEditorCategory = (props: any) => {
 
     return (<>{categoryEditor}</>)
 }
+
+export default ArticleEditorCategory;

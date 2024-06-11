@@ -1,7 +1,7 @@
 'use client'
 
-import {ArticleList} from "@/pages/article/articleList";
-import {ArticleContent} from "@/pages/article/articleContent";
+import ArticleList from "@/pages/article/articleList";
+import ArticleContent from "@/pages/article/articleContent";
 import useSWR from 'swr';
 import {Spin} from "@/components/spin";
 import {useMemo, useState} from "react";
@@ -10,7 +10,7 @@ import {Alert} from "@/components/alert";
 
 const fetcher: any = (url: string) => fetch(url).then((res) => res.json());
 
-export const Article = () => {
+const Article = () => {
     const { data, error, isLoading } = useSWR("/api/v1/articles", fetcher);
     const [currentArticle, setCurrentArticle] = useState<articleInterface>({
         category_id: 0,
@@ -34,8 +34,8 @@ export const Article = () => {
     if (isLoading) return (<Spin />)
 
     return (
-        <div className="flex flex-row translate-y-2 w-10/12">
-            <div className="left-0 w-3/12 min-w-80">
+        <div className="flex flex-row translate-y-2 w-10/12 space-x-20">
+            <div className="left-0 w-fit border-r border-gray-200">
                 <ArticleList data={data.data} setCurrentArticle={setCurrentArticle} />
             </div>
             <div className="p-3 w-full">
@@ -44,3 +44,5 @@ export const Article = () => {
         </div>
     )
 }
+
+export default Article;

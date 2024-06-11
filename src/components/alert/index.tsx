@@ -1,4 +1,4 @@
-import {AlertComponent} from "@/components/alert/component";
+import {AlertComponent} from "@/components/alert/alertComponent";
 
 export const Alert = (props: any) => {
     if (props.severity === "success") {

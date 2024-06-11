@@ -2,11 +2,11 @@
 
 import {CommonContext} from "@/app/commonContext";
 import {useContext, useLayoutEffect, useState} from "react";
-import {LoginPage} from "@/pages/auth/login";
-import {LogoutPage} from "@/pages/auth/logout";
+import LoginPage from "@/pages/auth/login";
+import LogoutPage from "@/pages/auth/logout";
 import {isAuthenticated} from "@/pages/auth/isAuth";
 
-export const AuthPage = () => {
+const AuthPage = () => {
     const [isClient, setIsClient] = useState(false)
 
     useLayoutEffect(() => {
@@ -48,3 +48,5 @@ export const AuthPage = () => {
         </>
     );
 }
+
+export default AuthPage;
