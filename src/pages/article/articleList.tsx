@@ -73,7 +73,7 @@ const ArticleList = (props: any) => {
                             {
                                 // @ts-ignore
                                 articleListMap[item].map((item: Article, titleIndex: number) => {
-                                    return <li key={titleIndex} className="pl-2 pt-2 pb-2 text-sm">
+                                    return <li key={titleIndex} className="pl-2 pt-2 pb-2 text-sm w-full">
                                         <Button type="label" onClick={() => props.setCurrentArticle(item)} label={item.title} />
                                     </li>
                                 })
@@ -86,7 +86,7 @@ const ArticleList = (props: any) => {
     }
 
     return (
-        <div className="bg-gray-100 mr-10 p-5 sticky top-10 left-0 min-w-56">
+        <div className="bg-gray-100 mr-10 p-5 sticky top-10 left-0 min-w-56 w-full">
             {listArticle()}
         </div>
     )
