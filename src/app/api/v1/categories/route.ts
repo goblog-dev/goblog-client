@@ -1,11 +1,11 @@
 import CategoryModel from "@/models/categories";
 import {ApiResponse} from "@/app/api";
 
-export const GET = async () => {
+export async function GET() {
     const apiResponse: ApiResponse = {message: "", status: "", translate: ""}
 
     try {
-        const categoryModel:CategoryModel = new CategoryModel();
+        const categoryModel: CategoryModel = new CategoryModel();
         const resp: ApiResponse = await categoryModel.List();
 
         apiResponse.status = resp.status;
@@ -17,7 +17,7 @@ export const GET = async () => {
     } catch (err: any) {
         apiResponse.status = err.status;
         apiResponse.message = err.message;
-        apiResponse.translate =  err.translate;
+        apiResponse.translate = err.translate;
 
         return Response.json(apiResponse);
     }

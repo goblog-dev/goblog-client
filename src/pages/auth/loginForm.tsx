@@ -3,11 +3,16 @@ import {useState} from "react";
 import {Auth} from "@/models/auth";
 import {Button} from "@/components/button";
 import {Spin} from "@/components/spin";
+import {Alert} from "@/components/alert";
 
 const AuthLoginForm = (props: any) => {
     const router = useRouter();
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
+    const [alertVisible, setAlertVisible] = useState<boolean>(false);
+    const [alertTitle, setAlertTitle] = useState<string>("title");
+    const [alertMessage, setAlertMessage] = useState<string>("message");
+    const [alertSeverity, setAlertSeverity] = useState<string>("success");
 
     const setupShowPassword = () => {
         setShowPassword(!showPassword);
@@ -17,6 +22,7 @@ const AuthLoginForm = (props: any) => {
         e.preventDefault();
 
        setLoading(true);
+       setAlertVisible(false);
 
         const {email, password, remember} = e.target;
         const url: string = "api/v1/auths/login";
@@ -40,19 +46,17 @@ const AuthLoginForm = (props: any) => {
             const response = await res.json();
 
             if (response.status === 'error') {
-                props.setAlertTitle("Login Error")
-                props.setAlertMessage(response.translate);
-                props.setAlertVisible(true);
-                props.setAlertSeverity("error");
-
-                props.setModalOpen(true);
+                setAlertTitle("Login Error")
+                setAlertMessage(response.translate);
+                setAlertVisible(true);
+                setAlertSeverity("error");
                 return
             }
 
-            props.setAlertTitle("Login Success")
-            props.setAlertMessage(response.translate);
-            props.setAlertVisible(true);
-            props.setAlertSeverity("success");
+            setAlertTitle("Login Success")
+            setAlertMessage(response.translate);
+            setAlertVisible(true);
+            setAlertSeverity("success");
 
             setRememberMe(remember.checked, response.data.token);
 
@@ -61,10 +65,10 @@ const AuthLoginForm = (props: any) => {
         } catch (err: any) {
             console.error("err:", err);
 
-            props.setAlertTitle("Login Error")
-            props.setAlertMessage(err.message);
-            props.setAlertVisible(true);
-            props.setAlertSeverity("error");
+            setAlertTitle("Login Error")
+            setAlertMessage(err.message);
+            setAlertVisible(true);
+            setAlertSeverity("error");
         } finally {
             setLoading(false);
         }
@@ -92,6 +96,7 @@ const AuthLoginForm = (props: any) => {
 
     return <>
         <Spin open={loading} />
+        <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible}/>
         <div className="p-6
                     space-y-4
                     md:space-y-6

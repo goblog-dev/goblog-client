@@ -1,26 +1,26 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type {Metadata} from "next";
+import {Inter} from "next/font/google";
 import "./layout.css";
-import App from './app';
+import {Menu} from "@/components/menu";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
-  title: "GoBlog",
-  description: "Personal blog @michaelwp",
+    title: "GoBlog",
+    description: "Personal blog @michaelwp",
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
+                                       children,
+                                   }: Readonly<{
+    children: React.ReactNode;
 }>) {
-  return (
-      <html lang="en">
-          <body className={inter.className}>
-          {/* eslint-disable-next-line react/no-children-prop */}
-          <App children={children}/>
-          </body>
-      </html>
-);
+    return (
+        <html lang="en">
+            <body className={inter.className}>
+                <Menu/>
+                {children}
+            </body>
+        </html>
+    );
 }

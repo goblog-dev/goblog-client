@@ -2,7 +2,7 @@ import {ApiResponse} from "@/app/api";
 import AuthModel from "@/models/auth";
 import {cookies} from "next/headers";
 
-export const GET = async (request: Request) => {
+export async function GET() {
     const apiResponse: ApiResponse = {message: "", status: "", translate: ""}
 
     try {
@@ -13,7 +13,7 @@ export const GET = async (request: Request) => {
             token += cookieToken.value
         }
 
-        const authModel:AuthModel = new AuthModel();
+        const authModel: AuthModel = new AuthModel();
         const resp: ApiResponse = await authModel.Logout(token);
 
         apiResponse.status = resp.status;
@@ -27,7 +27,7 @@ export const GET = async (request: Request) => {
     } catch (err: any) {
         apiResponse.status = err.status;
         apiResponse.message = err.message;
-        apiResponse.translate =  err.translate;
+        apiResponse.translate = err.translate;
         apiResponse.http_code = err.http_code;
 
         cookies().delete("token");

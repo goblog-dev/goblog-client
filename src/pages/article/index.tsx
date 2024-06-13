@@ -11,7 +11,7 @@ import {CommonContext} from "@/app/commonContext";
 const fetcher: any = (url: string) => fetch(url).then((res) => res.json());
 
 const Article = () => {
-    const {data, error, isLoading} = useSWR("/api/v1/articles", fetcher);
+    const {data, error, isLoading} = useSWR(`${process.env.NEXT_PUBLIC_APP_SERVER_HOST}/api/v1/articles`, fetcher);
     const {setIsGlobalLoading} = useContext(CommonContext);
     const [currentArticle, setCurrentArticle] = useState<articleInterface>({
         category_id: 0,

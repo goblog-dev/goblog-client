@@ -19,7 +19,6 @@ const App = (props: any) => {
     const [alertMessage, setAlertMessage] = useState<string>("message");
     const [alertSeverity, setAlertSeverity] = useState<string>("success");
 
-
     return (
         <CommonContext.Provider value={{
             isGlobalLoading
@@ -34,15 +33,14 @@ const App = (props: any) => {
             , setAlertMessage
             , setAlertSeverity
         }}>
-            <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible} />
-                    <Spin open={isGlobalLoading} />
-                    <Modal open={modalOpen}
-                           content={modalContent}
-                           title={modalTitle}
-                           footer={modalFooter}
-                           header={modalHeader}/>
-                    <Menu/>
-                    {props.children}
+            <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible}/>
+            <Spin open={isGlobalLoading}/>
+            <Modal open={modalOpen}
+                   content={modalContent}
+                   title={modalTitle}
+                   footer={modalFooter}
+                   header={modalHeader}/>
+            {props.children}
         </CommonContext.Provider>
     );
 }

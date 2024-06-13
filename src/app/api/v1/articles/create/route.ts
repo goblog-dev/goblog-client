@@ -2,7 +2,7 @@ import {ApiResponse} from "@/app/api";
 import ArticleModel from "@/models/articles";
 import {cookies} from "next/headers";
 
-export const POST = async (request: Request) => {
+export async function POST (request: Request){
     const apiResponse: ApiResponse = {message: "", status: "", translate: ""}
 
     try {

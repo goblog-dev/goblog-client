@@ -11,7 +11,6 @@ export const Modal = (props: any) => {
                     p-2
                     rounded-md border-gray-200 border-2
                     min-w-56
-                    left-1/2
                     bg-gray-100">
                 {
                     props.header ?
