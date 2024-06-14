@@ -31,9 +31,9 @@ export const AlertComponent = (props: any) => {
                  z-50
                  flex flex-row
                  justify-between
-                 sticky
+                 fixed
                  w-full
-                 bottom-0 left-0
+                 top-0 left-0
                  items-center
                  text-white text-sm
                  font-bold

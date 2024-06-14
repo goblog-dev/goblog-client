@@ -15,6 +15,7 @@ const AuthLoginForm = (props: any) => {
     const [alertSeverity, setAlertSeverity] = useState<string>("success");
 
     const setupShowPassword = () => {
+        setAlertVisible(false);
         setShowPassword(!showPassword);
     }
 

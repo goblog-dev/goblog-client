@@ -2,9 +2,9 @@ export const ButtonLabel = (props: any) => {
     return (
         <button onClick={props.onClick}
                 className="
-                    text-left
+                    text-left text-gray-500
                     w-fit
-                    hover:text-gray-800
+                    hover:bg-gray-200 hover:text-gray-800
                     flex flex-row
                     space-x-1
                     justify-start
