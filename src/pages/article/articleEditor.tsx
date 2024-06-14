@@ -6,6 +6,7 @@ import ArticleEditorTitle from "@/pages/article/articleEditorTitle";
 import ArticleEditorCategory from "@/pages/article/articleEditorCategory";
 import ArticleEditorContent from "@/pages/article/articleEditorContent";
 import ArticleEditorTags from "@/pages/article/articleEditorTags";
+import Demo from "@/components/editor/mantineTextEditor";
 
 type contentData = {
     content: string;

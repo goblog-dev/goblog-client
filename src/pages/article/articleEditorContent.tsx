@@ -1,4 +1,5 @@
 import {QuillEditor} from '@/components/editor/quillToolbar';
+import Demo from "@/components/editor/mantineTextEditor";
 
 const ArticleEditorContent = (props: any) => {
     const setupContent = (content: string) => {

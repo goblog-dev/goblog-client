@@ -48,7 +48,7 @@ export const QuillEditor = (props: any) => {
                 onChange={props.setupContent}
                 modules={quillModules}
                 formats={quillFormats}
-                className="bg-white -z-0 min-h-96"
+                className="bg-white -z-0 min-h-96 sticky top-20"
             />
         </div>
     );

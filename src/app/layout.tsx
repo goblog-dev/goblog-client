@@ -2,6 +2,7 @@ import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./layout.css";
 import {Menu} from "@/components/menu";
+import '@mantine/tiptap/styles.css';
 
 const inter = Inter({subsets: ["latin"]});
 

@@ -22,7 +22,7 @@ export const Menu = () => {
     }, []);
 
     return (
-        <div>
+        <div className="sticky z-30 top-0 left-0">
             <Spin open={loading} />
             <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible}/>
             <Modal open={modalOpen}
