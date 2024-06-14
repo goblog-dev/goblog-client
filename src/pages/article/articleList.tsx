@@ -86,7 +86,7 @@ const ArticleList = (props: any) => {
     }
 
     return (
-        <div className="bg-gray-100 mr-10 p-5 sticky top-20 left-0 min-w-56 w-full">
+        <div className="bg-gray-100 mr-10 p-5 sticky top-20 left-0">
             {listArticle()}
         </div>
     )
