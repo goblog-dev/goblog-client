@@ -48,14 +48,6 @@ export const Menu = () => {
                             <span className="text-4xl">GoBlog</span><span>.dev</span>
                         </Link>
                     </div>
-                    {/*<div className="ml-2 mr-2 mb-1*/}
-                    {/*                    pl-2 pr-2*/}
-                    {/*                    text-sm text-gray-800*/}
-                    {/*                    border-2 border-gray-500*/}
-                    {/*                    flex*/}
-                    {/*                    justify-end*/}
-                    {/*                    space-x-6*/}
-                    {/*                    w-full">*/}
                     <div className="w-full text-sm text-gray-500 space-x-2">
                         <a href="https://www.michaelputong.com" className="w-fit
                                                                             hover:font-semibold
