@@ -13,23 +13,6 @@ const fetcher: any = (url: string) => fetch(url).then((res) => res.json());
 const Article = () => {
     const {data, error, isLoading} = useSWR(`${process.env.NEXT_PUBLIC_APP_SERVER_HOST}/api/v1/articles`, fetcher);
     const {setIsGlobalLoading} = useContext(CommonContext);
-    const [currentArticle, setCurrentArticle] = useState<articleInterface>({
-        category_id: 0,
-        category_name: "",
-        content: "",
-        created_at: "",
-        created_by: 0,
-        id: 0,
-        title: "",
-        updated_at: "",
-        updated_by: 0,
-        user_id: 0,
-        user_name: ""
-    });
-
-    const currentArticleMemo: articleInterface = useMemo(() => {
-        return currentArticle;
-    }, [currentArticle])
 
     if (error) return (<Alert type="error" title={'Article'} message={data ? data.translate : "cannot reach server"}/>);
     if (isLoading) return (<>{setIsGlobalLoading(true)}</>);
@@ -38,10 +21,7 @@ const Article = () => {
         return <>
             <div className="flex flex-row translate-y-2 w-10/12 space-x-20">
                 <div className="left-0 w-fit border-r border-gray-200">
-                    <ArticleList data={data.data} setCurrentArticle={setCurrentArticle}/>
-                </div>
-                <div className="p-3 w-full">
-                    <ArticleContent data={currentArticleMemo}/>
+                    <ArticleList data={data.data} />
                 </div>
             </div>
         </>

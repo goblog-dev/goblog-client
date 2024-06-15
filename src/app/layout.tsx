@@ -3,6 +3,7 @@ import {Inter} from "next/font/google";
 import "./layout.css";
 import {Menu} from "@/components/menu";
 import '@mantine/tiptap/styles.css';
+import Article from "@/pages/article";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -11,9 +12,7 @@ export const metadata: Metadata = {
     description: "Personal blog @michaelwp",
 };
 
-export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
+export default function RootLayout({children}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (

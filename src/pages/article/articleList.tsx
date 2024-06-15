@@ -3,15 +3,16 @@
 import React, {useEffect, useState} from "react";
 import {Article} from "@/models/articles";
 import {Button} from "@/components/button";
+import {useRouter} from "next/navigation";
 
 const ArticleList = (props: any) => {
+    const router = useRouter();
     const [categoryList, setCategoryList] = useState<string[]>([]);
     const [articleListMap, setArticleListMap] = useState<Map<string, Article[]>>();
 
     useEffect(() => {
         if (props.data) {
             setupArticleList(props.data);
-            props.setCurrentArticle(props.data[0]);
         }
     }, [props.data])
 
@@ -74,7 +75,9 @@ const ArticleList = (props: any) => {
                                 // @ts-ignore
                                 articleListMap[item].map((item: Article, titleIndex: number) => {
                                     return <li key={titleIndex} className="pl-2 pt-2 pb-2 text-sm w-full">
-                                        <Button type="label" onClick={() => props.setCurrentArticle(item)} label={item.title} />
+                                        <a href={`/articles/${item.id}`} className="hover:font-semibold text-gray-500">
+                                            {item.title}
+                                        </a>
                                     </li>
                                 })
                             }

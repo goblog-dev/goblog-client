@@ -13,6 +13,7 @@ export interface Article {
     user_name?: string
     category_name?: string
     tags?: string
+    page?: string
 }
 
 export default class ArticlesModel {

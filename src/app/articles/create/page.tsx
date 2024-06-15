@@ -3,7 +3,7 @@
 import ArticleEditor from "@/pages/article/articleEditor";
 import isAuth from "@/pages/auth/isAuth";
 
-const ArticlePage = () => {
+const ArticleCreate = () => {
     return (
         <div className="flex justify-center">
             <ArticleEditor/>
@@ -11,4 +11,4 @@ const ArticlePage = () => {
     )
 }
 
-export default isAuth(ArticlePage);
+export default isAuth(ArticleCreate);

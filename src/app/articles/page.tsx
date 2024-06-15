@@ -1,14 +1,11 @@
-'use client'
+import Article from "@/pages/article";
 
-import ArticleEditor from "@/pages/article/articleEditor";
-import isAuth from "@/pages/auth/isAuth";
-
-const ArticlePage = () => {
-    return (
-        <div className="flex justify-center">
-            <ArticleEditor/>
-        </div>
+const ArticleList = () => {
+    return(
+        <>
+            <Article />
+        </>
     )
 }
 
-export default isAuth(ArticlePage);
+export default ArticleList;
