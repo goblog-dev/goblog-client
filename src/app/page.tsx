@@ -7,29 +7,12 @@ const Home = () => {
     const {setIsDrawerOpen} = useContext(CommonContext);
 
     return (
-        <div className="space-y-10">
-            <div className="font-bold text-8xl">
-                &ldquo;a
-                <span className="font-semibold text-gray-500 text-7xl m-2">
-                    little
-                </span>
-                share better than
-                <span className="opacity-20 m-2">
-                    none
-                </span>
-                &rdquo;
+        <div className="xl:space-y-10 lg:space-y-10 space-y-5">
+            <div className="font-bold xl:text-8xl l:text-8xl md:text-6xl text-4xl">
+                &ldquo;a little share better than none&rdquo;
             </div>
-            <div className="text-2xl text-gray-500">
-                A place where I share my
-                <span className="font-bold m-1">
-                    Experience
-                </span>,
-                <span className="font-bold m-1">
-                    Knowledge
-                </span>&
-                <span className="font-bold m-1">
-                    Thought
-                </span>
+            <div className="text-gray-500 xl:text-2xl lg:text-2xl w-full">
+                A place where I share my Experience, Knowledge & Thought
             </div>
             <div>
                 <div className="border-black border-2 rounded-3xl

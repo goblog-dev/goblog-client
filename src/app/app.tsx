@@ -45,8 +45,17 @@ export default function App({children}: Readonly<{
             </svg>
         </div>
 
+    const drawerButton =
+        <div className="absolute -right-4 top-0 rounded-full border border-gray-300 p-0.5 bg-gray-100">
+            {isDrawerOpen ? drawerCloseIcon : drawerOpenIcon}
+        </div>
+
     return (
         <html lang="en">
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <title>GoBlog</title>
+        </head>
         <body className={inter.className}>
         <CommonContext.Provider value={{
             isGlobalLoading
@@ -70,28 +79,36 @@ export default function App({children}: Readonly<{
                    footer={modalFooter}
                    header={modalHeader}/>
             <Menu/>
-            <div className="flex w-full p-5 pl-20 pr-20 justify-center">
+            <div className="flex
+                            w-full
+                            pt-5
+                            xl:pl-20 xl:pr-20 lg:pl-20 lg:pr-20 md:pl-10 md:pr-10
+                            justify-center">
                 <div className={`delay-400
                                     duration-500
                                     ease-in-out
                                     transition-all
                                     transform
                                     ${isDrawerOpen ? " left-0 " : " left-1.5 "}
-                                    ${isDrawerOpen ? " relative " : " absolute "}
+                                    ${isDrawerOpen ? "relative " : "fixed "}
                                     ${isDrawerOpen ? " translate-x-0 " : " -translate-x-full"}
-                                    w-80`}>
+                                    bg-gray-100
+                                    w-80
+                                    z-20`}>
                     <div className={`w-full
                                     border-r border-gray-300
                                     p-3
                                     sticky
                                     top-20`}>
-                        <div className="absolute -right-4 top-0 rounded-full border border-gray-300 p-0.5 bg-gray-100">
-                            {isDrawerOpen ? drawerCloseIcon : drawerOpenIcon}
-                        </div>
+                        {drawerButton}
                         <Article/>
                     </div>
                 </div>
-                <div className={`p-5 w-5/6 ${isDrawerOpen ? " relative " : " absolute "}`}>
+                <div className={`p-5
+                                 w-5/6 
+                                 ${isDrawerOpen ? "relative" : "absolute"}
+                                 bg-gray-100 
+                                 z-10`}>
                     <div>{children}</div>
                 </div>
             </div>
