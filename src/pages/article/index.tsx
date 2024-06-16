@@ -1,10 +1,8 @@
 'use client'
 
 import ArticleList from "@/pages/article/articleList";
-import ArticleContent from "@/pages/article/articleContent";
 import useSWR from 'swr';
-import {useContext, useMemo, useState} from "react";
-import {Article as articleInterface} from "@/models/articles";
+import {useContext} from "react";
 import {Alert} from "@/components/alert";
 import {CommonContext} from "@/app/commonContext";
 
@@ -18,13 +16,11 @@ const Article = () => {
     if (isLoading) return (<>{setIsGlobalLoading(true)}</>);
     if (data) {
         setIsGlobalLoading(false)
-        return <>
-            <div className="flex flex-row translate-y-2 w-10/12 space-x-20">
-                <div className="left-0 w-fit border-r border-gray-200">
-                    <ArticleList data={data.data} />
-                </div>
-            </div>
-        </>
+        return (
+            <>
+                <ArticleList data={data.data}/>
+            </>
+        )
     }
 }
 

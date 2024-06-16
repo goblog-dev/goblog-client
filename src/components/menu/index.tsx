@@ -8,8 +8,11 @@ import {useLayoutEffect, useState} from "react";
 import {Alert} from "@/components/alert";
 import {Spin} from "@/components/spin";
 import {Button} from "@/components/button";
+import {useRouter} from "next/navigation";
+import {isAuthenticated} from "@/pages/auth/isAuth";
 
 export const Menu = () => {
+    const router = useRouter();
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const [alertVisible, setAlertVisible] = useState<boolean>(false);
     const [alertTitle, setAlertTitle] = useState<string>("title");
@@ -22,9 +25,14 @@ export const Menu = () => {
         setAlertVisible(false);
     }, []);
 
+    const showLoginForm = () => {
+        setAlertVisible(false);
+        setModalOpen(true);
+    }
+
     return (
         <div className="sticky z-30 top-0 left-0">
-            <Spin open={loading} />
+            <Spin open={loading}/>
             <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible}/>
             <Modal open={modalOpen}
                    content={<AuthLoginForm setModalOpen={setModalOpen}/>}
@@ -37,8 +45,7 @@ export const Menu = () => {
                 z-30
                 top-0 left-0
                 bg-gray-100 bg-opacity-90
-                border-b-2 border-gray-200
-                text-black
+                border-b-2 border-gray-300
                 pt-3 pb-3 pl-16 pr-16
                 w-full
             ">
@@ -48,12 +55,15 @@ export const Menu = () => {
                             <span className="text-4xl">GoBlog</span><span>.dev</span>
                         </Link>
                     </div>
-                    <div className="w-full text-sm text-gray-500 space-x-2">
-                        <a href="https://www.michaelputong.com" className="w-fit
-                                                                            hover:font-semibold
-                                                                            pr-3 pl-3 pt-1 pb-1">
-                            About Me
-                        </a>
+                    <div className="flex w-full text-sm text-gray-500 space-x-2 justify-end items-center">
+                        <Button type="label" label="Home" onClick={() => router.push("/")}/>
+                        <Button type="label" label="Write" onClick={() => {
+                            isAuthenticated() ?
+                                router.push("/articles/create") :
+                                showLoginForm()
+                        }}/>
+                        <Button type="label" label="About Me"
+                                onClick={() => router.push("https://www.michaelputong.com")}/>
                     </div>
                     <div>
                         <AuthPage setModalOpen={setModalOpen}

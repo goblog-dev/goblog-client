@@ -1,11 +1,7 @@
 import type {Metadata} from "next";
-import {Inter} from "next/font/google";
 import "./layout.css";
-import {Menu} from "@/components/menu";
 import '@mantine/tiptap/styles.css';
-import Article from "@/pages/article";
-
-const inter = Inter({subsets: ["latin"]});
+import App from '@/app/app';
 
 export const metadata: Metadata = {
     title: "GoBlog",
@@ -16,11 +12,10 @@ export default function RootLayout({children}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={inter.className}>
-                <Menu/>
+        <>
+            <App>
                 {children}
-            </body>
-        </html>
+            </App>
+        </>
     );
 }

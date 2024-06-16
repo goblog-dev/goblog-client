@@ -1,9 +1,9 @@
 'use client'
 
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Article} from "@/models/articles";
-import {Button} from "@/components/button";
 import {useRouter} from "next/navigation";
+import {Button} from "@/components/button";
 
 const ArticleList = (props: any) => {
     const router = useRouter();
@@ -62,7 +62,7 @@ const ArticleList = (props: any) => {
                 categoryList.map((item: string, catIndex: number) => {
                     const itemSplit: string[] = item.split(" ");
                     const categorySplit: string[] = itemSplit.map((word: string) => {
-                        return word.substring(0,1).toUpperCase() + word.substring(1);
+                        return word.substring(0, 1).toUpperCase() + word.substring(1);
                     });
                     const category: string = categorySplit.join(" ");
 
@@ -75,9 +75,8 @@ const ArticleList = (props: any) => {
                                 // @ts-ignore
                                 articleListMap[item].map((item: Article, titleIndex: number) => {
                                     return <li key={titleIndex} className="pl-2 pt-2 pb-2 text-sm w-full">
-                                        <a href={`/articles/${item.id}`} className="hover:font-semibold text-gray-500">
-                                            {item.title}
-                                        </a>
+                                        <Button type="label" label={item.title}
+                                                onClick={() => router.push(`/articles/${item.id}`)}/>
                                     </li>
                                 })
                             }
@@ -89,9 +88,9 @@ const ArticleList = (props: any) => {
     }
 
     return (
-        <div className="bg-gray-100 mr-10 p-5 sticky top-20 left-0">
+        <>
             {listArticle()}
-        </div>
+        </>
     )
 }
 

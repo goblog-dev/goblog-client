@@ -12,7 +12,7 @@ const fetcher: any = (url: string) => fetch(url).then((res) => res.json());
 
 const ArticleId = ({ params }: { params: { id: string } }) => {
     const {setIsGlobalLoading} = useContext(CommonContext);
-    const {data, error, isLoading} = useSWR(`/api/v1/articles/${params.id}`, fetcher);
+    const {data, error, isLoading} = useSWR(`${process.env.NEXT_PUBLIC_APP_SERVER_HOST}/api/v1/articles/${params.id}`, fetcher);
 
     if (error) return (<Alert type="error" title={'Article'} message={data ? data.translate : "cannot reach server"}/>);
     if (isLoading) return (<>{setIsGlobalLoading(true)}</>);

@@ -1,53 +1,48 @@
 'use client'
 
-import {useLayoutEffect, useState} from "react";
+import {useContext} from "react";
 import {CommonContext} from "@/app/commonContext";
-import {Modal} from "@/components/modal";
-import {Spin} from "@/components/spin";
-import {Alert} from "@/components/alert";
-import {useRouter} from "next/navigation";
-import Article from "@/pages/article";
 
 const Home = () => {
-    const router = useRouter();
-    const [isGlobalLoading, setIsGlobalLoading] = useState<boolean>(false);
-    const [modalOpen, setModalOpen] = useState<boolean>(false);
-    const [modalContent, setModalContent] = useState<any>();
-    const [modalTitle, setModalTitle] = useState<string>("title");
-    const [modalFooter, setModalFooter] = useState<boolean>(true);
-    const [modalHeader, setModalHeader] = useState<boolean>(true);
-    const [alertVisible, setAlertVisible] = useState<boolean>(false);
-    const [alertTitle, setAlertTitle] = useState<string>("title");
-    const [alertMessage, setAlertMessage] = useState<string>("message");
-    const [alertSeverity, setAlertSeverity] = useState<string>("success");
-
-    useLayoutEffect(() => {
-        router.push("/articles");
-    }, []);
+    const {setIsDrawerOpen} = useContext(CommonContext);
 
     return (
-        <CommonContext.Provider value={{
-            isGlobalLoading
-            , setIsGlobalLoading
-            , setModalOpen
-            , setModalContent
-            , setModalTitle
-            , setModalFooter
-            , setModalHeader
-            , setAlertVisible
-            , setAlertTitle
-            , setAlertMessage
-            , setAlertSeverity
-        }}>
-            <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible}/>
-            <Spin open={isGlobalLoading}/>
-            <Modal open={modalOpen}
-                   content={modalContent}
-                   title={modalTitle}
-                   footer={modalFooter}
-                   header={modalHeader}/>
-        </CommonContext.Provider>
-    );
+        <div className="space-y-10">
+            <div className="font-bold text-8xl">
+                &ldquo;a
+                <span className="font-semibold text-gray-500 text-7xl m-2">
+                    little
+                </span>
+                share better than
+                <span className="opacity-20 m-2">
+                    none
+                </span>
+                &rdquo;
+            </div>
+            <div className="text-2xl text-gray-500">
+                A place where I share my
+                <span className="font-bold m-1">
+                    Experience
+                </span>,
+                <span className="font-bold m-1">
+                    Knowledge
+                </span>&
+                <span className="font-bold m-1">
+                    Thought
+                </span>
+            </div>
+            <div>
+                <div className="border-black border-2 rounded-3xl
+                                p-2
+                                justify-center
+                                flex
+                                hover:bg-gray-800 hover:text-white hover:cursor-pointer"
+                     onClick={() => setIsDrawerOpen(true)}>
+                    Start Reading
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default Home;

@@ -1,11 +1,13 @@
-import Article from "@/pages/article";
+'use client'
+
+import {useLayoutEffect} from "react";
+import {useRouter} from "next/navigation";
 
 const ArticleList = () => {
-    return(
-        <>
-            <Article />
-        </>
-    )
+    const router = useRouter();
+    useLayoutEffect(() => {
+        router.push("/");
+    }, []);
 }
 
 export default ArticleList;

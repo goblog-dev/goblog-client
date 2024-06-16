@@ -3,7 +3,7 @@ import {ButtonLabel} from "@/components/button/label";
 
 export const Button = (props: any) => {
     if (props.type === "primary") {
-        return <ButtonComponent textColor="white" color="bg-black" {...props} />;
+        return <ButtonComponent textColor="white" color="bg-gray-800" {...props} />;
     }
 
     if (props.type === "secondary") {
