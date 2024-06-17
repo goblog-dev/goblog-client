@@ -26,14 +26,14 @@ const ArticleContent = (props: any) => {
         setDataArticle(props.data);
     }, [props.data]);
 
-    const articleDataMemo = useMemo(() => {
+    const articleDataMemo: Article = useMemo(() => {
         return dataArticle;
     }, [dataArticle])
 
     return (
         <>
             <div className="border-b-gray-300 border-b-2 pb-5 mb-5">
-                <div className="font-extrabold text-4xl pb-2">{articleDataMemo.title}</div>
+                <div className="font-extrabold xl:text-4xl lg:text-4xl md:text-3xl text-2xl pb-2">{articleDataMemo.title}</div>
                 <span className="text-sm text-gray-500 flex flex-row space-x-2">
                     <Button type="label"
                             label={articleDataMemo.user_name}

@@ -22,7 +22,9 @@ const DropdownMenu = (props: any) => {
                         <path d="M5 17H20" stroke="#000000" strokeWidth="2" strokeLinecap="round"/>
                         <path d="M5 7H20" stroke="#000000" strokeWidth="2" strokeLinecap="round"/>
                     </svg>
-                    <span className="text-4xl">GoBlog</span><span>.dev</span>
+                    <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                        <span className="text-4xl">GoBlog</span><span>.dev</span>
+                    </div>
                 </div>
                 {
                     isMenuOpen ?

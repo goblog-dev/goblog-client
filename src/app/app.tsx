@@ -79,36 +79,44 @@ export default function App({children}: Readonly<{
                    footer={modalFooter}
                    header={modalHeader}/>
             <Menu/>
-            <div className="flex
-                            w-full
-                            pt-5
-                            xl:pl-20 xl:pr-20 lg:pl-20 lg:pr-20 md:pl-10 md:pr-10
-                            justify-center">
+            <div className={`flex
+                             w-full
+                             pt-5
+                             xl:pr-20 lg:pr-20 pr-10 pl-0
+                             xl:${isDrawerOpen ? "justify-start" : "justify-center"}
+                             lg:${isDrawerOpen ? "justify-start" : "justify-center"}
+                             md:${isDrawerOpen ? "justify-start" : "justify-center"}
+                             justify-center`}>
                 <div className={`delay-400
                                     duration-500
                                     ease-in-out
                                     transition-all
                                     transform
-                                    ${isDrawerOpen ? " left-0 " : " left-1.5 "}
-                                    ${isDrawerOpen ? "relative " : "fixed "}
-                                    ${isDrawerOpen ? " translate-x-0 " : " -translate-x-full"}
+                                    ${isDrawerOpen ? "left-0" : "left-5"}
+                                    ${isDrawerOpen ? "xl:relative lg:relative md:relative fixed" : "fixed"}
+                                    ${isDrawerOpen ? "translate-x-0" : "-translate-x-full"}
                                     bg-gray-100
-                                    w-80
+                                    xl:w-80 lg:w-80 md:w-80 w-11/12
+                                    xl:top-auto lg:top-auto md:top-auto top-20
+                                    xl:pl-10 lg:pl-10 pl-5
+                                    border-r border-gray-300
                                     z-20`}>
                     <div className={`w-full
-                                    border-r border-gray-300
                                     p-3
+                                    top-20
                                     sticky
-                                    top-20`}>
+                                    bg-gray-100`}>
                         {drawerButton}
                         <Article/>
                     </div>
                 </div>
-                <div className={`p-5
+                <div className={`p-5 pl-10
                                  w-5/6 
-                                 ${isDrawerOpen ? "relative" : "absolute"}
+                                 xl:relative lg:relative md:relative absolute
+                                 xl:top-0 lg:top-0 md:top-0 top-20
                                  bg-gray-100 
-                                 z-10`}>
+                                 z-10
+                                 overflow-scroll`}>
                     <div>{children}</div>
                 </div>
             </div>

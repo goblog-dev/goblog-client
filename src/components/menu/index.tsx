@@ -32,7 +32,7 @@ export const Menu = () => {
     }
 
     return (
-        <div>
+        <div className="xl:sticky lg:sticky md:sticky fixed left-0 top-0 z-40 shadow w-full">
             <Spin open={loading}/>
             <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible}/>
             <Modal open={modalOpen}
@@ -50,14 +50,16 @@ export const Menu = () => {
                 pt-3 pb-3 xl:pl-16 lg:pl-16 pl-5 xl:pr-16 lg:pr-16 pr-5
                 w-full
             ">
-                <DropdownMenu showLoginForm={showLoginForm}
-                              setModalOpen={setModalOpen}
-                              setAlertVisible={setAlertVisible}
-                              setAlertTitle={setAlertTitle}
-                              setAlertMessage={setAlertMessage}
-                              setAlertSeverity={setAlertSeverity}
-                              setLoading={setLoading}/>
-                <div className="flex items-center space-x-2 invisible xl:visible lg:visible">
+                <div className="visible xl:invisible lg:invisible md:invisible">
+                    <DropdownMenu showLoginForm={showLoginForm}
+                                  setModalOpen={setModalOpen}
+                                  setAlertVisible={setAlertVisible}
+                                  setAlertTitle={setAlertTitle}
+                                  setAlertMessage={setAlertMessage}
+                                  setAlertSeverity={setAlertSeverity}
+                                  setLoading={setLoading}/>
+                </div>
+                <div className="flex items-center space-x-2 invisible xl:visible lg:visible md:visible">
                     <div className="pl-5 pr-5 border-r-2 border-gray-200">
                         <Link href="/">
                             <span className="text-4xl">GoBlog</span><span>.dev</span>

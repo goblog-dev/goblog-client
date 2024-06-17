@@ -11,7 +11,7 @@ const Home = () => {
             <div className="font-bold xl:text-8xl l:text-8xl md:text-6xl text-4xl">
                 &ldquo;a little share better than none&rdquo;
             </div>
-            <div className="text-gray-500 xl:text-2xl lg:text-2xl w-full">
+            <div className="text-gray-500 xl:text-2xl lg:text-2xl text-sm w-full">
                 A place where I share my Experience, Knowledge & Thought
             </div>
             <div>
