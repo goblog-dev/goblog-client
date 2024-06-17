@@ -10,6 +10,7 @@ import {Spin} from "@/components/spin";
 import {Button} from "@/components/button";
 import {useRouter} from "next/navigation";
 import {isAuthenticated} from "@/pages/auth/isAuth";
+import DropdownMenu from "@/components/menu/dropdownMenu";
 
 export const Menu = () => {
     const router = useRouter();
@@ -31,7 +32,7 @@ export const Menu = () => {
     }
 
     return (
-        <div className="sticky z-30 top-0 left-0">
+        <div>
             <Spin open={loading}/>
             <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible}/>
             <Modal open={modalOpen}
@@ -45,11 +46,18 @@ export const Menu = () => {
                 z-30
                 top-0 left-0
                 bg-gray-100 bg-opacity-90
-                border-b-2 border-gray-300
-                pt-3 pb-3 pl-16 pr-16
+                border-b border-gray-300
+                pt-3 pb-3 xl:pl-16 lg:pl-16 pl-5 xl:pr-16 lg:pr-16 pr-5
                 w-full
             ">
-                <div className="flex items-center justify-start space-x-2">
+                <DropdownMenu showLoginForm={showLoginForm}
+                              setModalOpen={setModalOpen}
+                              setAlertVisible={setAlertVisible}
+                              setAlertTitle={setAlertTitle}
+                              setAlertMessage={setAlertMessage}
+                              setAlertSeverity={setAlertSeverity}
+                              setLoading={setLoading}/>
+                <div className="flex items-center space-x-2 invisible xl:visible lg:visible">
                     <div className="pl-5 pr-5 border-r-2 border-gray-200">
                         <Link href="/">
                             <span className="text-4xl">GoBlog</span><span>.dev</span>
