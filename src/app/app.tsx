@@ -116,6 +116,7 @@ export default function App({children}: Readonly<{
                                  xl:top-0 lg:top-0 md:top-0 top-20
                                  bg-gray-100 
                                  z-10
+                                 ${isDrawerOpen ? "xl:visible lg:visible md:visible invisible" : "visible"}
                                  overflow-scroll`}>
                     <div>{children}</div>
                 </div>
