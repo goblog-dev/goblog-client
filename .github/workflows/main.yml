@@ -15,10 +15,15 @@ jobs:
   deploy:
     name: Deploying to Google Cloud
     runs-on: ubuntu-latest
-    
+
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: 'Checkout'
+        uses: 'actions/checkout@v4'
 
       - name: 'Authenticate to Google Cloud'
         id: 'auth'
@@ -27,9 +32,25 @@ jobs:
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.SERVICE_ACCOUNT }}
 
-      - name: Deploy to App Engine
-        id: deploy
-        uses: 'google-github-actions/deploy-appengine@v2'
-
       - name: Test
         run: curl "${{ steps.deploy.outputs.url }}"
+
+
+#  deploy:
+#    name: Deploying to Google Cloud
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: 'Authenticate to Google Cloud'
+#        id: 'auth'
+#        uses: 'google-github-actions/auth@v2'
+#        with:
+#          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+#          service_account: ${{ secrets.SERVICE_ACCOUNT }}
+#
+#      - name: Deploy to App Engine
+#        id: deploy
+#        uses: 'google-github-actions/deploy-appengine@v2'
+#
+#      - name: Test
+#        run: curl "${{ steps.deploy.outputs.url }}"
