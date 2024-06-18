@@ -5,7 +5,7 @@ import {useContext, useEffect, useState} from "react";
 import {CommonContext} from "@/app/commonContext";
 
 export const AlertComponent = (props: any) => {
-    const {setAlertVisible, alertVisible} = useContext(CommonContext);
+    const {setAlertVisible} = useContext(CommonContext);
 
     useEffect(() => {
         const timeOut = setTimeout(() => {
@@ -15,7 +15,7 @@ export const AlertComponent = (props: any) => {
         return () => {
             clearTimeout(timeOut);
         }
-    }, [props, alertVisible])
+    }, [props])
 
     const content = (props: any) => {
         return (
