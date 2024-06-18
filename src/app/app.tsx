@@ -51,7 +51,10 @@ export default function App({children}: Readonly<{
         </div>
 
     return (
-        <html lang="en">
+        <html lang="en" onClick={() => {
+            setAlertVisible(false);
+            isDrawerOpen ? setIsDrawerOpen(false) : null
+        }}>
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <title>GoBlog</title>
@@ -71,7 +74,7 @@ export default function App({children}: Readonly<{
             , setAlertSeverity
             , setIsDrawerOpen
         }}>
-            <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible}/>
+            <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible} />
             <Spin open={isGlobalLoading}/>
             <Modal open={modalOpen}
                    content={modalContent}
@@ -100,7 +103,8 @@ export default function App({children}: Readonly<{
                                     xl:top-auto lg:top-auto md:top-auto top-20
                                     xl:pl-10 lg:pl-10 pl-5
                                     border-r border-gray-300
-                                    z-20`}>
+                                    z-20`}
+                     onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
                     <div className={`w-full
                                     p-3
                                     top-20

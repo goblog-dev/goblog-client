@@ -81,7 +81,7 @@ const ArticleEditor = () => {
             return;
         }
 
-        saveArticle("api/v1/articles/create", data).then();
+        saveArticle(`/api/v1/articles/create`, data).then();
     }
 
     const contentMemo = useMemo(() => {

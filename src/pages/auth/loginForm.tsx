@@ -26,7 +26,7 @@ const AuthLoginForm = (props: any) => {
        setAlertVisible(false);
 
         const {email, password, remember} = e.target;
-        const url: string = "api/v1/auths/login";
+        const url: string = `/api/v1/auths/login`;
 
         const auth: Auth = {
             email: email.value,

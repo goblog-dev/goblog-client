@@ -7,7 +7,6 @@ const LoginPage = (props: any) => {
                     label="Login"
                     onClick={() => {
                         props.setModalOpen(true);
-                        props.setAlertVisible(false);
                     }}/>);
 }
 

@@ -17,7 +17,7 @@ const AuthPage = (props: any) => {
             {
                 isClient ?
                     isAuthenticated()
-                        ? <LogoutPage {...props}/>
+                        ? <LogoutPage />
                         : <LoginPage {...props}/>
                     : <></>
             }

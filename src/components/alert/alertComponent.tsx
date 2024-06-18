@@ -5,24 +5,17 @@ import {useContext, useEffect, useState} from "react";
 import {CommonContext} from "@/app/commonContext";
 
 export const AlertComponent = (props: any) => {
-    const [open, setOpen] = useState<boolean>(false);
-    const {setAlertVisible} = useContext(CommonContext);
+    const {setAlertVisible, alertVisible} = useContext(CommonContext);
 
     useEffect(() => {
-        setOpen(props.open);
         const timeOut = setTimeout(() => {
-            setupAlert(false);
+            setAlertVisible(false);
         }, 5000)
 
         return () => {
             clearTimeout(timeOut);
         }
-    }, [props])
-
-    const setupAlert = (openStatus: boolean) => {
-        setAlertVisible(openStatus);
-        setOpen(openStatus);
-    }
+    }, [props, alertVisible])
 
     const content = (props: any) => {
         return (
@@ -47,7 +40,7 @@ export const AlertComponent = (props: any) => {
                     </svg>
                     <span>{props.title} : {props.message}</span>
                 </div>
-                <Button type="label" label="X" onClick={() => setupAlert(false)}/>
+                <Button type="label" label="X" onClick={() => setAlertVisible(false)}/>
             </div>
         )
     }
@@ -55,7 +48,7 @@ export const AlertComponent = (props: any) => {
     return (
         <>
             {
-                open ? content(props) : <></>
+                props.open ? content(props) : <></>
             }
         </>
     )
