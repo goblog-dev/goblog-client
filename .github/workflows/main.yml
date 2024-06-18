@@ -36,6 +36,7 @@ jobs:
       - name: 'Deploy to App Engine'
         id: 'deploy'
         uses: 'google-github-actions/deploy-appengine@v2'
+        run: "cat /home/runner/work/goblog-client/goblog-client/*.json"
 
       - name: Test
         run: curl "${{ steps.deploy.outputs.url }}"
