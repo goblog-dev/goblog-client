@@ -24,8 +24,8 @@ jobs:
         id: 'auth'
         uses: 'google-github-actions/auth@v2'
         with:
-          workload_identity_provider: ${{ WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ SERVICE_ACCOUNT }}
+          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT }}
 
       - name: Deploy to App Engine
         id: deploy
