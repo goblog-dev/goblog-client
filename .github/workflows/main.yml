@@ -6,8 +6,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -19,19 +17,19 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: 'Authenticate to Google Cloud'
-      id: 'auth'
-      uses: 'google-github-actions/auth@v2'
-      with:
-        workload_identity_provider: 'projects/1096485417620/locations/global/workloadIdentityPools/goblog-dev-pool/providers/goblog-dev-provider'
-        service_account: 'goblog-dev@appspot.gserviceaccount.com'
+      - name: 'Authenticate to Google Cloud'
+        id: 'auth'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          workload_identity_provider: ${{ WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ SERVICE_ACCOUNT }}
 
-    - name: Deploy to App Engine
-      id: deploy
-      uses: 'google-github-actions/deploy-appengine@v2'
+      - name: Deploy to App Engine
+        id: deploy
+        uses: 'google-github-actions/deploy-appengine@v2'
 
-    - name: Test
-      run: curl "${{ steps.deploy.outputs.url }}"
+      - name: Test
+        run: curl "${{ steps.deploy.outputs.url }}"
