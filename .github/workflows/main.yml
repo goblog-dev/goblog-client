@@ -18,6 +18,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # set up server address
+      - name: Create .env.local
+        run: echo ${{ secrets.APP_SERVER }} > .env.local
+
       # checkout the latest codebase
       - name: Checkout
         uses: actions/checkout@v4
