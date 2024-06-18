@@ -4,9 +4,11 @@ import React, {useContext, useEffect, useState} from "react";
 import {Article} from "@/models/articles";
 import {useRouter} from "next/navigation";
 import {Button} from "@/components/button";
+import {CommonContext} from "@/app/commonContext";
 
 const ArticleList = (props: any) => {
     const router = useRouter();
+    const {setIsDrawerOpen} = useContext(CommonContext);
     const [categoryList, setCategoryList] = useState<string[]>([]);
     const [articleListMap, setArticleListMap] = useState<Map<string, Article[]>>();
 
@@ -76,7 +78,10 @@ const ArticleList = (props: any) => {
                                 articleListMap[item].map((item: Article, titleIndex: number) => {
                                     return <li key={titleIndex} className="pl-2 pt-2 pb-2 text-sm w-full">
                                         <Button type="label" label={item.title}
-                                                onClick={() => router.push(`/articles/${item.id}`)}/>
+                                                onClick={() => {
+                                                    router.push(`/articles/${item.id}`);
+                                                    setIsDrawerOpen(false);
+                                                }}/>
                                     </li>
                                 })
                             }
