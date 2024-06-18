@@ -30,18 +30,26 @@ const DropdownMenu = (props: any) => {
                     isMenuOpen ?
                         <ul className="pl-2 pr-2 border border-gray-300 shadow-2xl">
                             <li className="border-b border-b-gray-300 pt-3 pb-3 pl-2 pr-2">
-                                <Button type="label" label="Home" onClick={() => router.push("/")}/>
+                                <Button type="label" label="Home" onClick={() => {
+                                    router.push("/");
+                                    setIsMenuOpen(false);
+                                }}/>
                             </li>
                             <li className="border-b border-b-gray-300 pt-3 pb-3 pl-2 pr-2">
                                 <Button type="label" label="Write" onClick={() => {
                                     isAuthenticated() ?
                                         router.push("/articles/create") :
-                                        props.showLoginForm()
+                                        props.showLoginForm();
+
+                                    setIsMenuOpen(false);
                                 }}/>
                             </li>
                             <li className="border-b border-b-gray-300 pt-3 pb-3 pl-2 pr-2">
                                 <Button type="label" label="About Me"
-                                        onClick={() => router.push("https://www.michaelputong.com")}/>
+                                        onClick={() => {
+                                            router.push("https://www.michaelputong.com");
+                                            setIsMenuOpen(false);
+                                        }}/>
                             </li>
                             <li className="border-b border-b-gray-300 pt-3 pb-3 pl-2 pr-2">
                                 <AuthPage setModalOpen={props.setModalOpen}
