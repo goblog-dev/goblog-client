@@ -9,12 +9,19 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
     const url: string = process.env.NEXT_PUBLIC_APP_SERVER_HOST + "/api/v1/articles/" + params.id;
     const post = await fetch(url).then((res) => res.json());
 
-    console.log("title:", post.data.title)
-    console.log("description:", post.data.description)
-
     return {
-        title: post.data.title,
-        description: post.data.description,
+        title: post.data.title
+        , description: post.data.description
+        , category: post.data.category
+        , keywords: post.data.tags.split("#")
+        , creator: post.data.user_name
+        , twitter: {
+            images: post.data.image
+            , card: "summary_large_image"
+            , title: post.data.title
+            , description: post.data.description
+            , creator: post.data.user_name
+        }
     };
 }
 

@@ -15,6 +15,7 @@ export interface Article {
     tags?: string
     page?: string
     description?: string
+    image?: string
 }
 
 export default class ArticlesModel {
@@ -42,7 +43,7 @@ export default class ArticlesModel {
         try {
             const apiRequest: ApiRequest = {
                 method: apiMethod.GET
-                , url:`${this.url}/${articleId}`
+                , url: `${this.url}/${articleId}`
             }
 
             const {data} = await axiosRequest(apiRequest, ServerConfig);
@@ -57,10 +58,10 @@ export default class ArticlesModel {
         try {
             const apiRequest: ApiRequest = {
                 method: apiMethod.POST
-                , url:`${this.url}/create`
+                , url: `${this.url}/create`
                 , data: article
                 , headers: {
-                    Authorization:token,
+                    Authorization: token,
                 }
             }
 

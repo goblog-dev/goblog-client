@@ -9,20 +9,17 @@ import {Button} from "@/components/button";
 const ArticleContent = (props: any) => {
     const router = useRouter();
     const [dataArticle, setDataArticle] = useState<Article>({
-        category_id: 0,
-        category_name: "",
-        content: "",
-        created_at: "",
-        created_by: 0,
-        id: 0,
-        tags: "",
-        title: "",
-        updated_at: "",
-        updated_by: 0,
-        user_id: 0,
-        user_name: "",
-        page: "",
-        description: ""
+        category_id: 0, category_name: ""
+        , content: ""
+        , created_at: "", created_by: 0
+        , id: 0
+        , tags: ""
+        , title: ""
+        , updated_at: "", updated_by: 0
+        , user_id: 0, user_name: ""
+        , page: ""
+        , description: ""
+        , image: ""
     });
 
     useLayoutEffect(() => {
@@ -36,13 +33,18 @@ const ArticleContent = (props: any) => {
     return (
         <>
             <div className="border-b-gray-300 border-b-2 pb-5 mb-5">
-                <div className="font-extrabold xl:text-4xl lg:text-4xl md:text-3xl text-2xl pb-2">{articleDataMemo.title}</div>
-                <span className="text-sm text-gray-500 flex flex-row space-x-2">
+                <div className="font-extrabold xl:text-4xl lg:text-4xl md:text-3xl text-2xl pb-2">
+                    {articleDataMemo.title}
+                </div>
+                <div className="text-sm text-gray-500 flex flex-row space-x-2">
                     <Button type="label"
                             label={articleDataMemo.user_name}
-                            onClick={() => router.push(`${articleDataMemo.page}`)} />
+                            onClick={() => router.push(`${articleDataMemo.page}`)}/>
                     <span>{articleDataMemo.created_at ? DateFormat(articleDataMemo.created_at) : ""}</span>
-                </span>
+                </div>
+                <div className="pt-2 pb-2">
+                    <img src={articleDataMemo.image} alt={articleDataMemo.title} className="w-full"/>
+                </div>
             </div>
             <div
                 className="ql-editor border-b-2 border-gray-300 pb-5 text-gray-600 text-sm"

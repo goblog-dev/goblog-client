@@ -104,8 +104,8 @@ export default function App({children}: Readonly<{
                             <Article/>
                         </div>
                     </div>
-                    <div className={`p-5 pl-10
-                                 w-5/6 
+                    <div className={`p-5 pl-5
+                                 xl:w-4/6 lg:w-4/6 w-5/6
                                  xl:relative lg:relative md:relative absolute
                                  xl:top-0 lg:top-0 md:top-0 top-20
                                  bg-gray-100 
