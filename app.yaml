@@ -6,7 +6,3 @@ instance_class: F1
 handlers:
   - url: /.*
     script: auto
-
-# Optional: Add env variables of your choice
-env_variables:
-  NEXT_PUBLIC_APP_SERVER_HOST: ${{ secrets.NEXT_PUBLIC_APP_SERVER_HOST }}

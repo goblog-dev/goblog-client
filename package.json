@@ -7,7 +7,9 @@
     "build": "next build",
     "lint": "next lint",
     "gcp-build": "next build",
-    "start": "next start -p 8080"
+    "start": "next start -p 8080",
+    "create-env": "printenv > .env.local",
+    "check-env": "cat .env.local"
   },
   "dependencies": {
     "@mantine/core": "^7.10.2",

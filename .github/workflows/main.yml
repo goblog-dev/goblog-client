@@ -20,7 +20,11 @@ jobs:
     steps:
       # create env file
       - name: Create .env.local
-        run: printenv > .env.local
+        run: npm run create-env
+
+      # checking env file
+      - name: Check .env.local
+        run: npm run check-env
 
       # checkout the latest codebase
       - name: Checkout
