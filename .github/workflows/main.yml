@@ -27,7 +27,7 @@ jobs:
 
       # checking env file
       - name: Check .env.local
-        run: cat /home/runner/work/goblog-client/goblog-client/.env.local
+        run: printenv
 
       # checkout the latest codebase
       - name: Checkout
