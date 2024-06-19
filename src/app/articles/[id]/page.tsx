@@ -16,11 +16,22 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
         , keywords: post.data.tags.split("#")
         , creator: post.data.user_name
         , twitter: {
-            images: post.data.image
+            images: {
+                url: post.data.image
+                , alt: post.data.description
+                , width: '1200px'}
             , card: "summary_large_image"
             , title: post.data.title
             , description: post.data.description
             , creator: post.data.user_name
+        }
+        , openGraph : {
+            images: {
+                url: post.data.image
+                , alt: post.data.description
+                , width: '1200px'}
+            , title: post.data.title
+            , description: post.data.description
         }
     };
 }
