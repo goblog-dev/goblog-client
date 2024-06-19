@@ -25,7 +25,7 @@ jobs:
           touch /home/runner/work/goblog-client/goblog-client/.env.local
           echo NEXT_PUBLIC_APP_SERVER_HOST=${{ secrets.NEXT_PUBLIC_APP_SERVER_HOST }} >> /home/runner/work/goblog-client/goblog-client/.env.local
           cat /home/runner/work/goblog-client/goblog-client/.env.local
-          ls -a /home/runner/work/goblog-client/goblog-client/.env.local
+          ls -a /home/runner/work/goblog-client/goblog-client
 
       # checkout the latest codebase
       - name: Checkout
