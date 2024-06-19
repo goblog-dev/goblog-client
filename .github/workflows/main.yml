@@ -18,13 +18,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-#      # set up server address
-#      - name: Create .env.local
-#        run: echo ${{ secrets.APP_SERVER }} > /home/runner/work/goblog-client/goblog-client/.env.local
-#
-#      # checking if the .env.local well created
-#      - name: Checking .env.local
-#        run: cat /home/runner/work/goblog-client/goblog-client/.env.local
+      # create env file
+      - name: Create .env.local
+        run: printenv > .env.local
 
       # checkout the latest codebase
       - name: Checkout
