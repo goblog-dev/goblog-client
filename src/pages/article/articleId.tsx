@@ -10,9 +10,9 @@ import {CommonContext} from "@/app/commonContext";
 
 const fetcher: any = (url: string) => fetch(url).then((res) => res.json());
 
-const ArticleId = (props: any) => {
+const ArticleId = (params: { id: string }) => {
     const {setIsGlobalLoading} = useContext(CommonContext);
-    const {data, error, isLoading} = useSWR("/api/v1/articles/" + props.params.id, fetcher);
+    const {data, error, isLoading} = useSWR("/api/v1/articles/" + params.id, fetcher);
 
     if (error) return (<Alert type="error" title={'Article'} message={data ? data.translate : "cannot reach server"}/>);
     if (isLoading) return (<>{setIsGlobalLoading(true)}</>);

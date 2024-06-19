@@ -21,7 +21,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 const ArticlePageId = ({params}: Props) => {
     return (
         <>
-            <ArticleId params={params}/>
+            <ArticleId {...params}/>
         </>
     )
 }
