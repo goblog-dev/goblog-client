@@ -19,17 +19,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # create env file
-      - name: Create .env.local
-        run: |
-          touch /home/runner/work/goblog-client/.env.local
-          echo NEXT_PUBLIC_APP_SERVER_HOST=${{ secrets.NEXT_PUBLIC_APP_SERVER_HOST }} >> /home/runner/work/goblog-client/goblog-client/.env.local
-          cat /home/runner/work/goblog-client/.env.local
-          ls -a /home/runner/work/goblog-client
-
       # checkout the latest codebase
       - name: Checkout
         uses: actions/checkout@v4
+
+      # create env file
+      - name: Create .env.local
+        run: |
+          touch /home/runner/work/goblog-client/goblog-client/.env.local
+          echo NEXT_PUBLIC_APP_SERVER_HOST=${{ secrets.NEXT_PUBLIC_APP_SERVER_HOST }} >> /home/runner/work/goblog-client/goblog-client/goblog-client/.env.local
+          cat /home/runner/work/goblog-client/goblog-client/.env.local
+          ls -a /home/runner/work/goblog-client/goblog-client
 
       # deploy the code
       - name: Deploy to App Engine
