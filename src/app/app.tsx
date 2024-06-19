@@ -1,6 +1,5 @@
 'use client'
 
-import {Inter} from "next/font/google";
 import {Menu} from "@/components/menu";
 import {useState} from "react";
 import {CommonContext} from "@/app/commonContext";
@@ -8,8 +7,6 @@ import {Alert} from "@/components/alert";
 import {Spin} from "@/components/spin";
 import {Modal} from "@/components/modal";
 import Article from "@/pages/article";
-
-const inter = Inter({subsets: ["latin"]});
 
 export default function App({children}: Readonly<{
     children: React.ReactNode;
@@ -35,31 +32,19 @@ export default function App({children}: Readonly<{
             </svg>
         </div>
 
-
-    const drawerCloseIcon =
-        <div onClick={() => setIsDrawerOpen(false)} className="cursor-pointer">
-            <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                 onClick={() => setIsDrawerOpen(false)}>
-                <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#26355D" strokeWidth="2" strokeLinecap="round"
-                      strokeLinejoin="round"/>
-            </svg>
-        </div>
-
     const drawerButton =
-        <div className="absolute -right-4 top-0 rounded-full border border-gray-300 p-0.5 bg-gray-100">
-            {isDrawerOpen ? drawerCloseIcon : drawerOpenIcon}
+        <div className={`absolute 
+                        -right-4 top-0 
+                        rounded-full border border-gray-300 
+                        p-0.5 
+                        bg-gray-100
+                        delay-300
+                        duration-300
+                        ${isDrawerOpen ? "-rotate-180" : "rotate-0"}`}>
+            {drawerOpenIcon}
         </div>
 
     return (
-        <html lang="en" onClick={() => {
-            setAlertVisible(false);
-            isDrawerOpen ? setIsDrawerOpen(false) : null
-        }}>
-        <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <title>GoBlog</title>
-        </head>
-        <body className={inter.className}>
         <CommonContext.Provider value={{
             isGlobalLoading
             , setIsGlobalLoading
@@ -74,15 +59,20 @@ export default function App({children}: Readonly<{
             , setAlertSeverity
             , setIsDrawerOpen
         }}>
-            <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible} />
-            <Spin open={isGlobalLoading}/>
-            <Modal open={modalOpen}
-                   content={modalContent}
-                   title={modalTitle}
-                   footer={modalFooter}
-                   header={modalHeader}/>
-            <Menu/>
-            <div className={`flex
+            <div onClick={() => {
+                setAlertVisible(false);
+                isDrawerOpen ? setIsDrawerOpen(false) : null
+            }}>
+
+                <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible}/>
+                <Spin open={isGlobalLoading}/>
+                <Modal open={modalOpen}
+                       content={modalContent}
+                       title={modalTitle}
+                       footer={modalFooter}
+                       header={modalHeader}/>
+                <Menu/>
+                <div className={`flex
                              w-full
                              pt-5
                              xl:pr-20 lg:pr-20 pr-10 pl-0
@@ -90,7 +80,7 @@ export default function App({children}: Readonly<{
                              lg:${isDrawerOpen ? "justify-start" : "justify-center"}
                              md:${isDrawerOpen ? "justify-start" : "justify-center"}
                              justify-center`}>
-                <div className={`delay-400
+                    <div className={`delay-400
                                     duration-500
                                     ease-in-out
                                     transition-all
@@ -104,17 +94,17 @@ export default function App({children}: Readonly<{
                                     xl:pl-10 lg:pl-10 pl-5
                                     border-r border-gray-300
                                     z-20`}
-                     onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
-                    <div className={`w-full
+                         onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
+                        <div className={`w-full
                                     p-3
                                     top-20
                                     sticky
                                     bg-gray-100`}>
-                        {drawerButton}
-                        <Article/>
+                            {drawerButton}
+                            <Article/>
+                        </div>
                     </div>
-                </div>
-                <div className={`p-5 pl-10
+                    <div className={`p-5 pl-10
                                  w-5/6 
                                  xl:relative lg:relative md:relative absolute
                                  xl:top-0 lg:top-0 md:top-0 top-20
@@ -122,11 +112,10 @@ export default function App({children}: Readonly<{
                                  z-10
                                  ${isDrawerOpen ? "xl:visible lg:visible md:visible invisible" : "visible"}
                                  overflow-scroll`}>
-                    <div>{children}</div>
+                        <div>{children}</div>
+                    </div>
                 </div>
             </div>
         </CommonContext.Provider>
-        </body>
-        </html>
     );
 }

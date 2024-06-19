@@ -1,3 +1,5 @@
+'use client'
+
 import {DateFormat} from "@/tool/dateTime";
 import {useLayoutEffect, useMemo, useState} from "react";
 import {Article} from "@/models/articles";
@@ -19,7 +21,8 @@ const ArticleContent = (props: any) => {
         updated_by: 0,
         user_id: 0,
         user_name: "",
-        page: ""
+        page: "",
+        description: ""
     });
 
     useLayoutEffect(() => {

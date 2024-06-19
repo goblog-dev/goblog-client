@@ -14,6 +14,7 @@ export interface Article {
     category_name?: string
     tags?: string
     page?: string
+    description?: string
 }
 
 export default class ArticlesModel {
@@ -45,6 +46,7 @@ export default class ArticlesModel {
             }
 
             const {data} = await axiosRequest(apiRequest, ServerConfig);
+
             return data;
         } catch (err: any) {
             throw err.response.data;

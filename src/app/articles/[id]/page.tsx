@@ -1,35 +1,31 @@
-'use client'
+import {Metadata} from "next";
+import ArticleId from "@/pages/article/articleId";
 
-import {useContext} from "react";
-import useSWR from "swr";
-import {Alert} from "@/components/alert";
-import {CommonContext} from "@/app/commonContext";
-import {Article} from "@/models/articles";
-import ErrorPage from "@/components/errorPage";
-import ArticleContent from "@/pages/article/articleContent";
+type Props = {
+    params: { id: string };
+};
 
-const fetcher: any = (url: string) => fetch(url).then((res) => res.json());
+export async function generateMetadata({params}: Props): Promise<Metadata> {
+    const url: string = process.env.NEXT_PUBLIC_APP_SERVER_HOST + "/api/v1/articles/" + params.id;
+    const post = await fetch(url).then((res) => res.json());
 
-const ArticleId = ({ params }: { params: { id: string } }) => {
-    const {setIsGlobalLoading} = useContext(CommonContext);
-    const {data, error, isLoading} = useSWR(`${process.env.NEXT_PUBLIC_APP_SERVER_HOST}/api/v1/articles/${params.id}`, fetcher);
+    console.log("title:", post.data.title)
+    console.log("description:", post.data.description)
 
-    if (error) return (<Alert type="error" title={'Article'} message={data ? data.translate : "cannot reach server"}/>);
-    if (isLoading) return (<>{setIsGlobalLoading(true)}</>);
-    if (data) {
-        setIsGlobalLoading(false);
-
-        const dataArticle: Article = data.data;
-        if (!dataArticle) return (<ErrorPage type="not-found" />);
-
-        return (
-            <>
-                <ArticleContent data={dataArticle}/>
-            </>
-        )
-    }
+    return {
+        title: post.data.title,
+        description: post.data.description,
+    };
 }
 
-export default ArticleId;
+const ArticlePageId = ({params}: Props) => {
+    return (
+        <>
+            <ArticleId params={params}/>
+        </>
+    )
+}
+
+export default ArticlePageId;
 
 
