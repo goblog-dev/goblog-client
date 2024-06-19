@@ -25,6 +25,7 @@ jobs:
           touch .env.local
           echo NEXT_PUBLIC_APP_SERVER_HOST=${{ secrets.NEXT_PUBLIC_APP_SERVER_HOST }} >> .env.local
           cat .env.local
+          ls -a
 
       # checkout the latest codebase
       - name: Checkout
