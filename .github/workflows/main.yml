@@ -21,13 +21,10 @@ jobs:
     steps:
       # create env file
       - name: Create .env.local
-        uses: ozaytsev86/create-env-file@v1
-        with:
-          ENV_NEXT_PUBLIC_APP_SERVER_HOST: ${{ secrets.NEXT_PUBLIC_APP_SERVER_HOST }}
-
-      # checking env file
-      - name: Check .env.local
-        run: printenv
+        run: |
+          touch .env.local
+          echo API_KEY=${{ secrets.NEXT_PUBLIC_APP_SERVER_HOST }} >> .env.local
+          cat .env.local
 
       # checkout the latest codebase
       - name: Checkout
