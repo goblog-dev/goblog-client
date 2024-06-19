@@ -20,11 +20,11 @@ jobs:
     steps:
       # create env file
       - name: Create .env.local
-        run: npm run create-env
+        run: printenv > /home/runner/work/goblog-client/goblog-client/.env.local
 
       # checking env file
       - name: Check .env.local
-        run: npm run check-env
+        run: cat /home/runner/work/goblog-client/goblog-client/.env.local
 
       # checkout the latest codebase
       - name: Checkout
