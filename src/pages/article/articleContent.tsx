@@ -5,6 +5,8 @@ import {useLayoutEffect, useMemo, useState} from "react";
 import {Article} from "@/models/articles";
 import {useRouter} from "next/navigation";
 import {Button} from "@/components/button";
+import Like from "@/components/like";
+import Comment from "@/components/comment";
 
 const ArticleContent = (props: any) => {
     const router = useRouter();
@@ -32,22 +34,30 @@ const ArticleContent = (props: any) => {
 
     return (
         <>
-            <div className="border-b-gray-300 border-b-2 pb-5 mb-5">
-                <div className="font-extrabold xl:text-4xl lg:text-4xl md:text-3xl text-2xl pb-2">
+            <div className="pb-2 mb-2">
+                <div
+                    className="font-extrabold xl:text-4xl lg:text-4xl md:text-3xl text-2xl pb-2 mb-2 border-b border-gray-300">
                     {articleDataMemo.title}
                 </div>
-                <div className="text-sm text-gray-500 flex flex-row space-x-2">
-                    <Button type="label"
-                            label={articleDataMemo.user_name}
-                            onClick={() => router.push(`${articleDataMemo.page}`)}/>
-                    <span>{articleDataMemo.created_at ? DateFormat(articleDataMemo.created_at) : ""}</span>
-                </div>
-                <div className="pt-2 pb-2">
-                    <img src={articleDataMemo.image} alt={articleDataMemo.title} className="w-full"/>
+                <div className="text-gray-500 pb-2 mb-2">
+                    <div className="xl:text-2xl lg:text-2xl md:text-2xl text-gray-800 pb-2 mb-2">
+                        {articleDataMemo.description}
+                    </div>
+                    <div className="text-sm text-gray-500 flex flex-row space-x-2 pb-2 mb-2 border-b border-gray-300">
+                        <Button type="label"
+                                label={articleDataMemo.user_name}
+                                onClick={() => router.push(`${articleDataMemo.page}`)}/>
+                        <span>{articleDataMemo.created_at ? DateFormat(articleDataMemo.created_at) : ""}</span>
+                        <Like/>
+                        <Comment/>
+                    </div>
+                    <div className="pt-2 pb-2">
+                        <img src={articleDataMemo.image} alt={articleDataMemo.title} className="w-full"/>
+                    </div>
                 </div>
             </div>
             <div
-                className="ql-editor border-b-2 border-gray-300 pb-5 text-gray-600 text-sm"
+                className="ql-editor border-b border-gray-300 pb-5 text-gray-600 text-sm"
                 dangerouslySetInnerHTML={{__html: articleDataMemo.content}}
             />
             <div className="text-sm text-gray-500 pt-2 flex space-x-1">
