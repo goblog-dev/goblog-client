@@ -1,5 +1,4 @@
 import "./layout.css";
-import '@mantine/tiptap/styles.css';
 import App from '@/app/app';
 import {Inter} from "next/font/google";
 

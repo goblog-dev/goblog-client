@@ -1,5 +1,4 @@
 import axios, {AxiosInstance} from "axios";
-import Cookies from "js-cookie";
 
 export const TIMEOUT: number = 30000
 

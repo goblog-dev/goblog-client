@@ -1,13 +1,14 @@
-import {Metadata} from "next";
 import ArticleId from "@/pages/article/articleId";
+import ArticlesModel from "@/models/articles";
+import {Metadata} from "next";
 
-type Props = {
+export type Props = {
     params: { id: string };
 };
 
 export async function generateMetadata({params}: Props): Promise<Metadata> {
-    const url: string = process.env.NEXT_PUBLIC_APP_SERVER_HOST + "/api/v1/articles/" + params.id;
-    const post = await fetch(url).then((res) => res.json());
+    const articlesModel: ArticlesModel = new ArticlesModel();
+    const post = await articlesModel.GetArticle(parseInt(params.id));
 
     return {
         title: post.data.title
@@ -32,11 +33,12 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
                 , width: '1200px'}
             , title: post.data.title
             , description: post.data.description
+            , url: 'http://goblog.dev/articles/' + post.data.id
         }
     };
 }
 
-const ArticlePageId = ({params}: Props) => {
+const ArticlePageId = async ({params}: Props) => {
     return (
         <>
             <ArticleId {...params}/>
