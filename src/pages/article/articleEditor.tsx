@@ -2,22 +2,27 @@
 
 import {useCallback, useContext, useMemo, useState} from "react";
 import {CommonContext} from "@/app/commonContext";
-import ArticleEditorTitle from "@/pages/article/articleEditorTitle";
-import ArticleEditorCategory from "@/pages/article/articleEditorCategory";
-import ArticleEditorContent from "@/pages/article/articleEditorContent";
-import ArticleEditorTags from "@/pages/article/articleEditorTags";
+import ArticleEditorTitle from "@/components/editor/articleEditorTitle";
+import ArticleEditorCategory from "@/components/editor/articleEditorCategory";
+import ArticleEditorContent from "@/components/editor/articleEditorContent";
+import ArticleEditorTags from "@/components/editor/articleEditorTags";
+import ArticleEditorDescription from "@/components/editor/articleEditorDescription";
 
 type contentData = {
     content: string;
     title: string;
     category_id: number;
     tags?: string;
+    description?: string;
+    image?: string;
 }
 
 const ArticleEditor = () => {
     const [title, setTitle] = useState<string>('');
     const [content, setContent] = useState<string>('');
     const [tags, setTags] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
+    const [image, setImage] = useState<string>('');
     const [categoryId, setCategoryId] = useState<number>(0);
     const {
         setAlertVisible
@@ -100,36 +105,39 @@ const ArticleEditor = () => {
         return tags;
     }, [tags])
 
+    const descriptionMemo = useMemo(() => {
+        return description;
+    }, [description])
+
     const handleEditorSaveCallback = useCallback((data: contentData) => {
         return handleEditorSave(data);
-    }, [content, title, categoryId])
+    }, [content, title, categoryId, tags, description, image])
 
 
     return (
-        <div className="w-10/12 flex flex-col pl-16 pr-16 pt-5 min-w-80 space-y-5">
+        <div className="w-full flex flex-col min-w-80 space-y-5">
             <div className="flex flex-col space-y-3">
                 <div className="flex flex-row mt-3">
-                    <ArticleEditorTitle title={titleMemo}
-                                        setTitle={setTitle}
-                                        setAlertVisible={setAlertVisible}/>
-                    <ArticleEditorCategory categoryId={categoryIdMemo}
-                                           setCategoryId={setCategoryId}
-                                           setAlertVisible={setAlertVisible}/>
+                    <ArticleEditorTitle title={titleMemo} setTitle={setTitle}/>
+                    <ArticleEditorCategory categoryId={categoryIdMemo} setCategoryId={setCategoryId}/>
                 </div>
                 <div>
-                    <ArticleEditorTags setAlertVisible={setAlertVisible}
-                                       setTags={setTags}
-                                       tags={tagsMemo}/>
+                    <ArticleEditorTags setTags={setTags} tags={tagsMemo}/>
+                </div>
+                <div>
+                    <ArticleEditorDescription setDescription={setDescription} description={descriptionMemo}/>
                 </div>
             </div>
             <div>
-                <ArticleEditorContent setAlertVisible={setAlertVisible}
-                                      setContent={setContent}
+                <ArticleEditorContent setContent={setContent}
                                       handleEditorSaveCallback={handleEditorSaveCallback}
-                                      contentMemo={contentMemo}
-                                      titleMemo={titleMemo}
-                                      categoryIdMemo={categoryIdMemo}
-                                      tagsMemo={tagsMemo}/>
+                                      data={{
+                                          content: contentMemo
+                                          , title: titleMemo
+                                          , category_id: categoryIdMemo
+                                          , tags: tagsMemo
+                                          , description: descriptionMemo
+                                      }}/>
             </div>
         </div>
     )

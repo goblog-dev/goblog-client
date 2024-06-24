@@ -43,14 +43,21 @@ const ArticleContent = (props: any) => {
                     <div className="xl:text-2xl lg:text-2xl md:text-2xl text-gray-800 pb-2 mb-2">
                         {articleDataMemo.description}
                     </div>
-                    <div className="text-sm text-gray-500 flex xl:flex-row lg:flex-row md:flex-row
-                                    xl:items-end lg:items-end md:items-end justify-start
-                                    flex-col space-x-2 space-y-2 pb-2 mb-2 border-b border-gray-300">
+                    <div className="text-sm text-gray-500
+                                    xl:flex-row lg:flex-row md:flex-row flex-col flex
+                                    xl:items-end lg:items-end md:items-end
+                                    justify-start
+                                    xl:space-x-2 lg:space-x-2 md:space-x-2 space-y-2
+                                    pb-2
+                                    mb-2
+                                    border-b border-gray-300">
                         <div className="flex flex-row space-x-2">
                             <Button type="label"
                                     label={articleDataMemo.user_name}
                                     onClick={() => router.push(`${articleDataMemo.page}`)}/>
-                            <span>{articleDataMemo.created_at ? DateFormat(articleDataMemo.created_at) : ""}</span>
+                            <span>
+                                {articleDataMemo.created_at ? DateFormat(articleDataMemo.created_at) : ""}
+                            </span>
                         </div>
                         <div className="flex flex-row space-x-2">
                             <Like/>

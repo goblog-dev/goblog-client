@@ -1,12 +1,10 @@
 const ArticleEditorTags = (props: any) => {
     const setupTags = (tags: string) => {
-        props.setAlertVisible(false);
         props.setTags(tags);
     }
 
     const tagEditor = <>
         <div className="pl-10 pr-10 w-full flex-col">
-            {/*<div className="font-bold mb-3">Title:</div>*/}
             <div>
                 <input
                     type='tags'

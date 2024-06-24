@@ -19,8 +19,13 @@ const Comment = () => {
 
     return (
         <>
-            <div className="flex flex-row space-x-2 pl-2 pr-2 ml-2 mr-2 border-gray-300 border-l">
-                <div className="flex flex-row space-x-1 cursor-pointer" onClick={() => setComment(comment + 1)}>
+            <div className="flex flex-row
+                            space-x-2
+                            pl-2 pr-2
+                            border-gray-300 border-l
+                            justify-center
+                            items-center">
+                <div className="cursor-pointer" onClick={() => setComment(comment + 1)}>
                     {commentIcon}
                 </div>
                 <span>{comment}</span>
