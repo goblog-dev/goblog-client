@@ -7,6 +7,7 @@ import ArticleEditorCategory from "@/components/editor/articleEditorCategory";
 import ArticleEditorContent from "@/components/editor/articleEditorContent";
 import ArticleEditorTags from "@/components/editor/articleEditorTags";
 import ArticleEditorDescription from "@/components/editor/articleEditorDescription";
+import MarkdownEditorComponent from "@/components/editor/markdownEditor";
 
 type contentData = {
     content: string;
@@ -110,6 +111,7 @@ const ArticleEditor = () => {
     }, [description])
 
     const handleEditorSaveCallback = useCallback((data: contentData) => {
+        alert("the data has being saving")
         return handleEditorSave(data);
     }, [content, title, categoryId, tags, description, image])
 
@@ -129,7 +131,7 @@ const ArticleEditor = () => {
                 </div>
             </div>
             <div>
-                <ArticleEditorContent setContent={setContent}
+                <MarkdownEditorComponent setContent={setContent}
                                       handleEditorSaveCallback={handleEditorSaveCallback}
                                       data={{
                                           content: contentMemo

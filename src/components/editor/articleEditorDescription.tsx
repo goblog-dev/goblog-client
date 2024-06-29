@@ -4,10 +4,10 @@ const ArticleEditorDescription = (props: any) => {
     }
 
     const descriptionEditor = <>
-        <div className="pl-10 pr-10 w-full flex-col">
+        <div className="pl-3 pr-3 w-full flex-col">
             <div>
                 <textarea
-                    rows={4}
+                    rows={2}
                     className="border-gray-300 bg-gray-100 border-b-2 p-2 w-full"
                     value={props.description}
                     onChange={(e) => setupDescription(e.target.value)}

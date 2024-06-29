@@ -6,7 +6,7 @@ const ArticleEditorCategory = (props: any) => {
     }
 
     const categoryEditor = <>
-        <div className="pl-10 pr-10 w-full">
+        <div className="pl-3 pr-3 w-full">
             <div>
                 <Category setCategoryId={setupCategoryId}/>
             </div>

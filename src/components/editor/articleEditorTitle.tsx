@@ -4,7 +4,7 @@ const ArticleEditorTitle = (props: any) => {
     }
 
     const titleEditor = <>
-        <div className="pl-10 pr-10 w-full flex-col">
+        <div className="pl-3 pr-3 w-full flex-col">
             <div>
                 <input
                     type='text'

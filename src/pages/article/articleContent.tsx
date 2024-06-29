@@ -7,6 +7,7 @@ import {useRouter} from "next/navigation";
 import {Button} from "@/components/button";
 import Like from "@/components/like";
 import Comment from "@/components/comment";
+import MarkdownPreview from '@uiw/react-markdown-preview';
 
 const ArticleContent = (props: any) => {
     const router = useRouter();
@@ -69,10 +70,11 @@ const ArticleContent = (props: any) => {
                     </div>
                 </div>
             </div>
-            <div
-                className="ql-editor border-b border-gray-300 pb-5 text-gray-600 text-sm"
-                dangerouslySetInnerHTML={{__html: articleDataMemo.content}}
-            />
+            {/*<div*/}
+            {/*    className="ql-editor border-b border-gray-300 pb-5 text-gray-600 text-sm"*/}
+            {/*    dangerouslySetInnerHTML={{__html: articleDataMemo.content}}*/}
+            {/*/>*/}
+            <MarkdownPreview source={articleDataMemo.content} className="p-2" />
             <div className="text-sm text-gray-500 pt-2 flex space-x-1">
                 {
                     articleDataMemo.tags ? articleDataMemo.tags.split("#")
