@@ -12,7 +12,7 @@ const MarkdownEditor = dynamic(
 const MarkdownEditorComponent = (props:any) => {
     return (
         <div>
-            <Button type="primary" label="save" onClick={()=> props.handleEditorSaveCallback(props.data)} />
+            <Button type="primary" label={props.actionType} onClick={()=> props.handleEditorSaveCallback(props.data)} />
             <MarkdownEditor value={props.data.content}
                             onChange={props.setContent}
                             enablePreview={true}

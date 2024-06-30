@@ -71,4 +71,22 @@ export default class ArticlesModel {
             throw err.response.data;
         }
     }
+
+    public PutArticle = async (article: Article, token: string | null): Promise<any> => {
+        try {
+            const apiRequest: ApiRequest = {
+                method: apiMethod.PUT
+                , url: `${this.url}/update`
+                , data: article
+                , headers: {
+                    Authorization: token,
+                }
+            }
+
+            const {data} = await axiosRequest(apiRequest, ServerConfig);
+            return data;
+        } catch (err: any) {
+            throw err.response.data;
+        }
+    }
 }

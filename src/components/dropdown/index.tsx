@@ -26,6 +26,7 @@ export const Dropdown = (props: any) => {
                     return <option
                         key={item.key}
                         value={item.value}
+                        selected={props.categoryId === item.value}
                     >{item.value}. {item.label}</option>
                 })
             }

@@ -32,7 +32,7 @@ const Category = (props: any) => {
             props.setCategoryId(categoryId);
         }
 
-        return (<Dropdown data={dropdownData} setValue={setupCategoryId}/>)
+        return (<Dropdown data={dropdownData} setValue={setupCategoryId} categoryId={props.categoryId}/>)
     }
 }
 
