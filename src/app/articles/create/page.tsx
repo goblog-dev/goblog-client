@@ -1,12 +1,16 @@
 'use client'
 
-import ArticleEditor from "@/pages/article/articleEditor";
+import ArticleEditor, {ActionType} from "@/pages/article/articleEditor";
 import isAuth from "@/pages/auth/isAuth";
 
-const ArticleCreate = () => {
+type Props = {
+    params: { id: string};
+};
+
+const ArticleCreate = ({params}: Props) => {
     return (
         <div className="flex justify-center">
-            <ArticleEditor/>
+            <ArticleEditor {...params} type={ActionType.CREATE}/>
         </div>
     )
 }
