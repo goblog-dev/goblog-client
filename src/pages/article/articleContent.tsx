@@ -7,7 +7,13 @@ import {useRouter} from "next/navigation";
 import {Button} from "@/components/button";
 import Like from "@/components/like";
 import Comment from "@/components/comment";
-import MarkdownPreview from '@uiw/react-markdown-preview';
+import dynamic from 'next/dynamic';
+import '@uiw/react-markdown-preview/markdown.css';
+
+const MarkdownPreview = dynamic(
+    () => import("@uiw/react-markdown-preview").then((mod) => mod.default),
+    { ssr: false }
+);
 
 const ArticleContent = (props: any) => {
     const router = useRouter();
@@ -75,6 +81,8 @@ const ArticleContent = (props: any) => {
             {/*    dangerouslySetInnerHTML={{__html: articleDataMemo.content}}*/}
             {/*/>*/}
             <MarkdownPreview source={articleDataMemo.content} className="p-2" />
+            {/*<MDEditor.Markdown source={articleDataMemo.content} className="p-2" />*/}
+
             <div className="text-sm text-gray-500 pt-2 flex space-x-1">
                 {
                     articleDataMemo.tags ? articleDataMemo.tags.split("#")
