@@ -21,7 +21,7 @@ const DropdownMenu = (props: any) => {
                                               top-0 left-0
                                               bg-gray-100 bg-opacity-50"
                                    onClick={() => setIsMenuOpen(false)}/> : <></>}
-            <div className="absolute">
+            <div className={"absolute"}>
                 <div className="flex items-center space-x-2 w-full">
                     <svg className={`border border-gray-500 ${isMenuOpen ? "rotate-90" : "rotate-0"}`}
                          onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -36,20 +36,20 @@ const DropdownMenu = (props: any) => {
                     <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
                         <Logo />
                     </div>
-                    <div className={"pl-20"}>
+                    <div className={"xl:relative lg:relative md:relative fixed right-0"}>
                         <DataColorModeToggle />
                     </div>
                 </div>
                 {
                     isMenuOpenMemo ?
                         <ul className="pl-2 pr-2 shadow-2xl bg-gray-100 dark:bg-gray-900 max-w-52">
-                            <li className="border-b border-b-gray-300 pt-3 pb-3 pl-2 pr-2">
+                            <li className="border-b border-gray-500 pt-3 pb-3 pl-2 pr-2">
                                 <Button type="label" label="Home" onClick={() => {
                                     router.push("/");
                                     setIsMenuOpen(false);
                                 }}/>
                             </li>
-                            <li className="border-b border-b-gray-300 pt-3 pb-3 pl-2 pr-2">
+                            <li className="border-b border-gray-500 pt-3 pb-3 pl-2 pr-2">
                                 <Button type="label" label="Write" onClick={() => {
                                     isAuthenticated() ?
                                         router.push("/articles/create") :
@@ -58,7 +58,7 @@ const DropdownMenu = (props: any) => {
                                     setIsMenuOpen(false);
                                 }}/>
                             </li>
-                            <li className="border-b border-b-gray-300 pt-3 pb-3 pl-2 pr-2">
+                            <li className="border-b border-gray-500 pt-3 pb-3 pl-2 pr-2">
                                 <Button type="label" label="About Me"
                                         onClick={() => {
                                             router.push("https://www.michaelputong.com");

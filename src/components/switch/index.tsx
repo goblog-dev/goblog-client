@@ -8,7 +8,7 @@ export const SwitchComponent = (props: any) => {
                    onClick={(e)=> props.onSelect(e)}
                    onChange={(e)=> props.onSelect(e)}
             />
-            <span className="slider round"></span>
+            <span className="slider round" />
         </label>
     )
 }
