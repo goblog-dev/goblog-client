@@ -39,6 +39,8 @@ export const Menu = () => {
                 border-b border-gray-500
                 pt-3 pb-3 xl:pl-16 lg:pl-16 pl-5 xl:pr-16 lg:pr-16 pr-5
                 w-full
+                dark:bg-gray-950
+                bg-gray-100
             ">
                 <div className="visible xl:invisible lg:invisible md:invisible">
                     <DropdownMenu showLoginForm={showLoginForm} setModalOpen={setModalOpen}/>
