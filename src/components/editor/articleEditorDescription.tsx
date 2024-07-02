@@ -8,7 +8,7 @@ const ArticleEditorDescription = (props: any) => {
             <div>
                 <textarea
                     rows={2}
-                    className="border-gray-300 bg-gray-100 border-b-2 p-2 w-full"
+                    className="border-gray-500 bg-gray-100 border-b p-2 w-full"
                     value={props.description}
                     onChange={(e) => setupDescription(e.target.value)}
                     placeholder={'description'}

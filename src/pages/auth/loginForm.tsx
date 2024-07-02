@@ -118,7 +118,7 @@ const AuthLoginForm = (props: any) => {
                     <input type="email" name="email" id="email"
                            className="
                                 bg-gray-100
-                                border-b border-gray-300
+                                border-b border-gray-500
                                 text-gray-900
                                 sm:text-sm
                                 focus:ring-primary-600 focus:border-primary-600
@@ -136,7 +136,7 @@ const AuthLoginForm = (props: any) => {
                                placeholder="••••••••" autoComplete="current-password"
                                className="
                                 bg-gray-100
-                                border-b border-gray-300
+                                border-b border-gray-500
                                 text-gray-900
                                 sm:text-sm
                                 focus:ring-primary-600 focus:border-primary-600
@@ -155,7 +155,7 @@ const AuthLoginForm = (props: any) => {
                             <input id="remember" aria-describedby="remember" type="checkbox"
                                    className="
                                         w-4 h-4
-                                        border border-gray-300 rounded
+                                        border border-gray-500 rounded
                                         bg-gray-50
                                         focus:ring-3 focus:ring-primary-300
                                         dark:bg-gray-700

@@ -8,7 +8,7 @@ const ArticleEditorTags = (props: any) => {
             <div>
                 <input
                     type='tags'
-                    className="border-gray-300 bg-gray-100 border-b-2 p-2 w-full"
+                    className="border-gray-500 bg-gray-100 border-b p-2 w-full"
                     value={props.tags}
                     onChange={(e) => setupTags(e.target.value)}
                     maxLength={50}

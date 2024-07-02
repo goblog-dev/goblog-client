@@ -28,7 +28,7 @@ export const AlertComponent = (props: any) => {
                  w-full
                  top-0 left-0
                  items-center
-                 text-white text-sm
+                 text-gray-200 text-sm
                  font-bold
                  px-4 py-3`}
                  role="alert">

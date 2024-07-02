@@ -69,7 +69,7 @@ const ArticleList = (props: any) => {
                     const category: string = categorySplit.join(" ");
 
                     return <li key={catIndex}>
-                        <span className="text-gray-800 font-bold text-sm">
+                        <span className="text-gray-800 font-bold text-sm dark:text-gray-200">
                             {category}
                         </span>
                         <ul className="mb-5">

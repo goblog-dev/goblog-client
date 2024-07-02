@@ -15,6 +15,8 @@ type globalContext = {
     setAlertMessage: Dispatch<SetStateAction<string>>
     setAlertSeverity: Dispatch<SetStateAction<string>>
     setIsDrawerOpen: Dispatch<SetStateAction<boolean>>
+    setDarkMode: Dispatch<SetStateAction<boolean>>
+    darkMode: boolean
 }
 
 const globalContextValue: globalContext = {
@@ -30,6 +32,8 @@ const globalContextValue: globalContext = {
     , setAlertMessage: value => {}
     , setAlertSeverity: value => {}
     , setIsDrawerOpen: value => {}
+    , setDarkMode: value => {}
+    , darkMode: true
 }
 
 export const CommonContext: Context<globalContext> = createContext(globalContextValue);

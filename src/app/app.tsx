@@ -1,15 +1,23 @@
 'use client'
 
 import {Menu} from "@/components/menu";
-import {useState} from "react";
+import {ReactNode, useState} from "react";
 import {CommonContext} from "@/app/commonContext";
 import {Alert} from "@/components/alert";
 import {Spin} from "@/components/spin";
 import {Modal} from "@/components/modal";
 import Article from "@/pages/article";
+import {Inter} from "next/font/google";
+
+const inter = Inter({subsets: ["latin"]});
+
+export const ColorMode = {
+    LIGHT: "light"
+    , DARK: "dark"
+}
 
 export default function App({children}: Readonly<{
-    children: React.ReactNode;
+    children: ReactNode;
 }>) {
     const [isGlobalLoading, setIsGlobalLoading] = useState<boolean>(false);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -22,6 +30,7 @@ export default function App({children}: Readonly<{
     const [alertMessage, setAlertMessage] = useState<string>("message");
     const [alertSeverity, setAlertSeverity] = useState<string>("success");
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+    const [darkMode, setDarkMode] = useState<boolean>(true);
 
     const drawerOpenIcon =
         <div onClick={() => setIsDrawerOpen(true)} className="cursor-pointer">
@@ -35,7 +44,7 @@ export default function App({children}: Readonly<{
     const drawerButton =
         <div className={`absolute 
                         -right-4 top-0 
-                        rounded-full border border-gray-300 
+                        rounded-full border border-gray-500 
                         p-0.5 
                         bg-gray-100
                         delay-300
@@ -58,7 +67,13 @@ export default function App({children}: Readonly<{
             , setAlertMessage
             , setAlertSeverity
             , setIsDrawerOpen
+            , setDarkMode
+            , darkMode
         }}>
+            <html lang="en"
+                  data-color-mode={darkMode ? ColorMode.DARK : ColorMode.LIGHT}
+                  className={darkMode ? ColorMode.DARK : ColorMode.LIGHT}>
+            <body className={`${inter.className} dark:bg-gray-950`}>
             <div onClick={() => {
                 setAlertVisible(false);
                 isDrawerOpen ? setIsDrawerOpen(false) : null
@@ -88,18 +103,17 @@ export default function App({children}: Readonly<{
                                     ${isDrawerOpen ? "left-0" : "left-5"}
                                     ${isDrawerOpen ? "xl:relative lg:relative md:relative fixed" : "fixed"}
                                     ${isDrawerOpen ? "translate-x-0" : "-translate-x-full"}
-                                    bg-gray-100
                                     xl:w-80 lg:w-80 md:w-80 w-11/12
                                     xl:top-auto lg:top-auto md:top-auto top-20
                                     xl:pl-10 lg:pl-10 pl-5
-                                    border-r border-gray-300
+                                    border-r border-gray-500
+                                    dark:bg-gray-950 bg-gray-100
                                     z-20`}
                          onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
                         <div className={`w-full
                                     p-3
                                     top-20
-                                    sticky
-                                    bg-gray-100`}>
+                                    sticky`}>
                             {drawerButton}
                             <Article/>
                         </div>
@@ -108,7 +122,6 @@ export default function App({children}: Readonly<{
                                  xl:w-4/6 lg:w-4/6 w-5/6
                                  xl:relative lg:relative md:relative absolute
                                  xl:top-0 lg:top-0 md:top-0 top-20
-                                 bg-gray-100 
                                  z-10
                                  ${isDrawerOpen ? "xl:visible lg:visible md:visible invisible" : "visible"}
                                  overflow-scroll`}>
@@ -116,6 +129,8 @@ export default function App({children}: Readonly<{
                     </div>
                 </div>
             </div>
+            </body>
+            </html>
         </CommonContext.Provider>
     );
 }
