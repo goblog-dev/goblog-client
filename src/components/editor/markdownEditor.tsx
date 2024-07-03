@@ -16,7 +16,7 @@ const MarkdownEditorComponent = (props:any) => {
             <MarkdownEditor value={props.data.content}
                             onChange={props.setContent}
                             enablePreview={true}
-                            className={"w-full h-screen"} />
+                            className={"w-full h-[35rem]"} />
         </div>
     );
 }

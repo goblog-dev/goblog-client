@@ -111,11 +111,15 @@ export default function App({children}: Readonly<{
                                     z-20`}
                          onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
                         <div className={`w-full
+                                    h-svh
                                     p-3
                                     top-20
                                     sticky`}>
                             {drawerButton}
-                            <Article/>
+                            <div className={`h-[35rem]
+                                            overflow-y-scroll`}>
+                                <Article/>
+                            </div>
                         </div>
                     </div>
                     <div className={`p-5 pl-5
