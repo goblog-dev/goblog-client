@@ -9,6 +9,8 @@ import Like from "@/components/like";
 import Comment from "@/components/comment";
 import dynamic from 'next/dynamic';
 import '@uiw/react-markdown-preview/markdown.css';
+import Facebook from "@/components/socialMedia/facebook";
+import Linkedin from "@/components/socialMedia/linkedin";
 
 const MarkdownPreview = dynamic(
     () => import("@uiw/react-markdown-preview").then((mod) => mod.default),
@@ -69,6 +71,8 @@ const ArticleContent = (props: any) => {
                         <div className="flex flex-row space-x-2">
                             <Like/>
                             <Comment/>
+                            <Facebook url={"https://goblog.dev/articles/" + articleDataMemo.id} articleId={articleDataMemo.id + ""}/>
+                            <Linkedin url={"https://goblog.dev/articles/" + articleDataMemo.id}/>
                         </div>
                     </div>
                     <div className="pt-2 pb-2">
