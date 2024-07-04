@@ -4,7 +4,6 @@ import {DateFormat} from "@/tool/dateTime";
 import {useLayoutEffect, useMemo, useState} from "react";
 import {Article} from "@/models/articles";
 import {useRouter} from "next/navigation";
-import {Button} from "@/components/button";
 import Like from "@/components/like";
 import Comment from "@/components/comment";
 import dynamic from 'next/dynamic';
@@ -14,7 +13,7 @@ import Linkedin from "@/components/socialMedia/linkedin";
 
 const MarkdownPreview = dynamic(
     () => import("@uiw/react-markdown-preview").then((mod) => mod.default),
-    { ssr: false }
+    {ssr: false}
 );
 
 const ArticleContent = (props: any) => {
@@ -31,6 +30,7 @@ const ArticleContent = (props: any) => {
         , page: ""
         , description: ""
         , image: ""
+        , avatar: ""
     });
 
     useLayoutEffect(() => {
@@ -40,6 +40,17 @@ const ArticleContent = (props: any) => {
     const articleDataMemo: Article = useMemo(() => {
         return dataArticle;
     }, [dataArticle])
+
+    const userName = (name: string) => {
+        const splitUserName: string[] = name.split(" ");
+
+        return splitUserName.map((n) => {
+            const fChar: string = n.slice(0, 1).toUpperCase();
+            const restName: string = n.slice(1, n.length);
+
+            return fChar + restName
+        }).join(" ")
+    }
 
     return (
         <>
@@ -52,26 +63,28 @@ const ArticleContent = (props: any) => {
                     <div className="xl:text-2xl lg:text-2xl md:text-2xl pb-2 mb-2">
                         {articleDataMemo.description}
                     </div>
-                    <div className="text-sm
+                    <div className="xl:text-sm lg:text-sm md:text-sm text-xs
                                     xl:flex-row lg:flex-row md:flex-row flex-col flex
-                                    xl:items-end lg:items-end md:items-end
+                                    xl:items-end lg:items-end md:items-end items-start
                                     justify-start
                                     xl:space-x-2 lg:space-x-2 md:space-x-2 space-y-2
                                     pb-2
                                     mb-2
                                     border-b border-gray-500">
-                        <div className="flex flex-row space-x-2">
-                            <Button type="label"
-                                    label={articleDataMemo.user_name}
-                                    onClick={() => router.push(`${articleDataMemo.page}`)}/>
-                            <span>
-                                {articleDataMemo.created_at ? DateFormat(articleDataMemo.created_at) : ""}
-                            </span>
+                        <div className="flex flex-row space-x-2 cursor-pointer"
+                             onClick={() => router.push(`${articleDataMemo.page}`)}>
+                            <img className={"w-10 h-10 border-gray-300 border rounded-[50%]"}
+                                 src={articleDataMemo.avatar} alt={articleDataMemo.user_name}/>
+                            <div className={"flex flex-col justify-center"}>
+                                <div>{articleDataMemo.created_at ? DateFormat(articleDataMemo.created_at) : ""}</div>
+                                <div>{userName(articleDataMemo.user_name ? articleDataMemo.user_name : "")}</div>
+                            </div>
                         </div>
                         <div className="flex flex-row space-x-2">
                             <Like/>
                             <Comment/>
-                            <Facebook url={"https://goblog.dev/articles/" + articleDataMemo.id} articleId={articleDataMemo.id + ""}/>
+                            <Facebook url={"https://goblog.dev/articles/" + articleDataMemo.id}
+                                      articleId={articleDataMemo.id + ""}/>
                             <Linkedin url={"https://goblog.dev/articles/" + articleDataMemo.id}/>
                         </div>
                     </div>
@@ -80,7 +93,7 @@ const ArticleContent = (props: any) => {
                     </div>
                 </div>
             </div>
-            <MarkdownPreview source={articleDataMemo.content} className="p-2" />
+            <MarkdownPreview source={articleDataMemo.content} className="p-2"/>
             <div className="text-sm text-gray-500 pt-2 flex space-x-1">
                 {
                     articleDataMemo.tags ? articleDataMemo.tags.split("#")

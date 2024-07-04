@@ -6,8 +6,8 @@ import {CommonContext} from "@/app/commonContext";
 import {Alert} from "@/components/alert";
 import {Spin} from "@/components/spin";
 import {Modal} from "@/components/modal";
-import Article from "@/pages/article";
 import {Inter} from "next/font/google";
+import SideMenu from "@/components/menu/sideMenu";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -16,9 +16,7 @@ export const ColorMode = {
     , DARK: "dark"
 }
 
-export default function App({children}: Readonly<{
-    children: ReactNode;
-}>) {
+export default function App({children}: Readonly<{ children: ReactNode }>) {
     const [isGlobalLoading, setIsGlobalLoading] = useState<boolean>(false);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const [modalContent, setModalContent] = useState<any>();
@@ -31,27 +29,6 @@ export default function App({children}: Readonly<{
     const [alertSeverity, setAlertSeverity] = useState<string>("success");
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
     const [darkMode, setDarkMode] = useState<boolean>(true);
-
-    const drawerOpenIcon =
-        <div onClick={() => setIsDrawerOpen(true)} className="cursor-pointer">
-            <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                 onClick={() => setIsDrawerOpen(true)}>
-                <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#26355D" strokeWidth="2" strokeLinecap="round"
-                      strokeLinejoin="round"/>
-            </svg>
-        </div>
-
-    const drawerButton =
-        <div className={`absolute 
-                        -right-4 top-0 
-                        rounded-full border border-gray-500 
-                        p-0.5 
-                        bg-gray-100
-                        delay-300
-                        duration-300
-                        ${isDrawerOpen ? "-rotate-180" : "rotate-0"}`}>
-            {drawerOpenIcon}
-        </div>
 
     return (
         <CommonContext.Provider value={{
@@ -69,16 +46,15 @@ export default function App({children}: Readonly<{
             , setIsDrawerOpen
             , setDarkMode
             , darkMode
+            , isDrawerOpen
         }}>
             <html lang="en"
                   data-color-mode={darkMode ? ColorMode.DARK : ColorMode.LIGHT}
                   className={darkMode ? ColorMode.DARK : ColorMode.LIGHT}>
             <body className={`${inter.className} dark:bg-gray-950`}>
             <div onClick={() => {
-                setAlertVisible(false);
-                isDrawerOpen ? setIsDrawerOpen(false) : null
+                setAlertVisible(false)
             }}>
-
                 <Alert severity={alertSeverity} title={alertTitle} message={alertMessage} open={alertVisible}/>
                 <Spin open={isGlobalLoading}/>
                 <Modal open={modalOpen}
@@ -95,33 +71,7 @@ export default function App({children}: Readonly<{
                              lg:${isDrawerOpen ? "justify-start" : "justify-center"}
                              md:${isDrawerOpen ? "justify-start" : "justify-center"}
                              justify-center`}>
-                    <div className={`delay-400
-                                    duration-500
-                                    ease-in-out
-                                    transition-all
-                                    transform
-                                    ${isDrawerOpen ? "left-0" : "left-5"}
-                                    ${isDrawerOpen ? "xl:relative lg:relative md:relative fixed" : "fixed"}
-                                    ${isDrawerOpen ? "translate-x-0" : "-translate-x-full"}
-                                    xl:w-80 lg:w-80 md:w-80 w-11/12
-                                    xl:top-auto lg:top-auto md:top-auto top-20
-                                    xl:pl-10 lg:pl-10 pl-5
-                                    border-r border-gray-500
-                                    dark:bg-gray-950 bg-gray-100
-                                    z-20`}
-                         onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
-                        <div className={`w-full
-                                    h-svh
-                                    p-3
-                                    top-20
-                                    sticky`}>
-                            {drawerButton}
-                            <div className={`h-[35rem]
-                                            overflow-y-scroll`}>
-                                <Article/>
-                            </div>
-                        </div>
-                    </div>
+                    <SideMenu/>
                     <div className={`p-5 pl-5
                                  xl:w-4/6 lg:w-4/6 w-5/6
                                  xl:relative lg:relative md:relative absolute

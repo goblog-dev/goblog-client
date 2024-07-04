@@ -16,6 +16,7 @@ export interface Article {
     page?: string
     description?: string
     image?: string
+    avatar?: string
 }
 
 export default class ArticlesModel {

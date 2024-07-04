@@ -17,6 +17,7 @@ type globalContext = {
     setIsDrawerOpen: Dispatch<SetStateAction<boolean>>
     setDarkMode: Dispatch<SetStateAction<boolean>>
     darkMode: boolean
+    isDrawerOpen: boolean
 }
 
 const globalContextValue: globalContext = {
@@ -34,6 +35,7 @@ const globalContextValue: globalContext = {
     , setIsDrawerOpen: value => {}
     , setDarkMode: value => {}
     , darkMode: true
+    , isDrawerOpen: false
 }
 
 export const CommonContext: Context<globalContext> = createContext(globalContextValue);
