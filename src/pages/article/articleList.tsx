@@ -5,6 +5,7 @@ import {Article} from "@/models/articles";
 import {useRouter} from "next/navigation";
 import {Button} from "@/components/button";
 import {CommonContext} from "@/app/commonContext";
+import Accordion from "@/components/accordion";
 
 const ArticleList = (props: any) => {
     const router = useRouter();
@@ -58,6 +59,27 @@ const ArticleList = (props: any) => {
         setCategoryList(Object.keys(articleMap));
     }
 
+    const listSubMenu = (item: string) => {
+            // @ts-ignore
+            return articleListMap[item].map((item: Article, titleIndex: number) => {
+                return <li key={titleIndex} className="pl-2 pt-2 pb-2 text-sm w-full">
+                    <div className={`xl:hidden lg:hidden md:hidden`}>
+                        <Button type="label" label={item.title}
+                                onClick={() => {
+                                    router.push(`/articles/${item.id}`);
+                                    setIsDrawerOpen(false);
+                                }}/>
+                    </div>
+                    <div className={`xl:block lg:block md:block hidden`}>
+                        <Button type="label" label={item.title}
+                                onClick={() => {
+                                    router.push(`/articles/${item.id}`);
+                                }}/>
+                    </div>
+                </li>
+            })
+    }
+
     const listArticle = () => {
         return <ul>
             {
@@ -68,29 +90,56 @@ const ArticleList = (props: any) => {
                     });
                     const category: string = categorySplit.join(" ");
 
-                    return <li key={catIndex}>
-                        <span className="text-gray-800 font-bold text-sm dark:text-gray-200">
-                            {category}
-                        </span>
-                        <ul className="mb-5">
-                            {
-                                // @ts-ignore
-                                articleListMap[item].map((item: Article, titleIndex: number) => {
-                                    return <li key={titleIndex} className="pl-2 pt-2 pb-2 text-sm w-full">
-                                        <Button type="label" label={item.title}
-                                                onClick={() => {
-                                                    router.push(`/articles/${item.id}`);
-                                                    setIsDrawerOpen(false);
-                                                }}/>
-                                    </li>
-                                })
-                            }
-                        </ul>
-                    </li>
+                    return (
+                        <Accordion title={category} key={catIndex} content={listSubMenu(item)}/>
+                    )
                 })
             }
         </ul>
     }
+
+    // const listArticle = () => {
+    //     return <ul>
+    //         {
+    //             categoryList.map((item: string, catIndex: number) => {
+    //                 const itemSplit: string[] = item.split(" ");
+    //                 const categorySplit: string[] = itemSplit.map((word: string) => {
+    //                     return word.substring(0, 1).toUpperCase() + word.substring(1);
+    //                 });
+    //                 const category: string = categorySplit.join(" ");
+    //
+    //                 return <li key={catIndex} className={`cursor-pointer`}>
+    //                     <span className={`text-gray-800 text-sm dark:text-gray-200
+    //                                       font-bold`}>
+    //                         {category}
+    //                     </span>
+    //                     <ul className={`mb-5 overflow-hidden`}>
+    //                         {
+    //                             // @ts-ignore
+    //                             articleListMap[item].map((item: Article, titleIndex: number) => {
+    //                                 return <li key={titleIndex} className="pl-2 pt-2 pb-2 text-sm w-full">
+    //                                     <div className={`xl:hidden lg:hidden md:hidden`}>
+    //                                         <Button type="label" label={item.title}
+    //                                                 onClick={() => {
+    //                                                     router.push(`/articles/${item.id}`);
+    //                                                     setIsDrawerOpen(false);
+    //                                                 }}/>
+    //                                     </div>
+    //                                     <div className={`xl:block lg:block md:block hidden`}>
+    //                                         <Button type="label" label={item.title}
+    //                                                 onClick={() => {
+    //                                                     router.push(`/articles/${item.id}`);
+    //                                                 }}/>
+    //                                     </div>
+    //                                 </li>
+    //                             })
+    //                         }
+    //                     </ul>
+    //                 </li>
+    //             })
+    //         }
+    //     </ul>
+    // }
 
     return (
         <>

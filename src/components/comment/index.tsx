@@ -1,8 +1,15 @@
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {CommonContext} from "@/app/commonContext";
 
 const Comment = () => {
     const [comment, setComment] = useState<number>(5);
     const [commentColor, setCommentColor] = useState<string>("#231F20");
+    const {darkMode} = useContext(CommonContext);
+
+
+    useEffect(() => {
+        setCommentColor(darkMode ? "#FFF" : "#231F20");
+    }, [darkMode])
 
     const commentIcon = <svg width="17px" height="17px" viewBox="0 0 32 32" version="1.1"
                              xmlns="http://www.w3.org/2000/svg">
