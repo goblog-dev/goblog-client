@@ -4,12 +4,12 @@ const Accordion = (props: any) => {
     const [expand, setExpand] = useState<boolean>(true);
 
     return (
-        <div key={props.key} className={"mb-1"}>
+        <div key={props.key} className={"mb-1 pr-2"}>
             <div className={`cursor-pointer 
-                             text-sm dark:text-gray-950 text-gray-200 
+                             text-sm dark:text-gray-200 text-gray-200 
                              w-full
                              font-semibold
-                             dark:bg-gray-200 bg-gray-700
+                             dark:bg-gray-600 bg-gray-700
                              flex
                              flex-row
                              justify-between
